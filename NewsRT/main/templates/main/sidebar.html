@@ -1,0 +1,35 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<script src="https://kit.fontawesome.com/a97047fead.js" crossorigin="anonymous"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3" style="background-color:#c4c57b">
+            <div class="row">
+                <div class="col-3">
+                    <img src="https://static.tildacdn.com/tild6164-3533-4432-b464-653932303566/2222_1222_1.png" alt="иконка" style="width:auto; height:50px;">
+                </div>
+                <div class="col-9">
+                    <h5>Название организации</h5>
+                </div>
+            </div>
+            <div class="row">
+                <h3>Меню</h3>
+                <ul>
+                    <div class="row">
+                    <ul><i class="fa-solid fa-house"></i><a>  </a><a href="{% url 'home' %}">Home page</a></ul>
+                    <ul><i class="fa-solid fa-circle-info"></i><a>  </a><a href="{% url 'about' %}">About us</a></ul>
+                    <ul><i class="fa-solid fa-address-card"></i><a>  </a><a href="{% url 'contacts' %}">Contacts</a></ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="container">
+                <h1>Основная часть</h1>
+            </div>
+        </div>
+    </div>
+</div>
