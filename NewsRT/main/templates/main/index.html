@@ -21,8 +21,11 @@
     {% endfor %}
 
     {% for m in news %}
-        <ul>{{ m.title }}, {{ m.date}}</ul>
+        <ul>{{ m.title|lower }}, {{ m.date}}</ul>
     {% endfor %}
+    
+    <p> value1 = {{ value1|default:"нет данных" }} </p>
+
 
     <h1> Главная страница из шаблона h1 </h1>
     <h3> Главная страница из шаблона h3 </h3>
