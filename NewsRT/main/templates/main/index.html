@@ -53,7 +53,57 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <h3> Выберите цвет: </h3>
+            {% for color in colors %}
+                <input type="radio" id="{{color}}" name="colors" value="{{ forloop.counter }}"> <br>
+                <label for="{{ color }}"> {{ color }}</label> <br>
+            {% endfor %}
+            <br>            
+        </div>
+        <div class="row">
+            <form method="post">
+                {% csrf_token %}
+                <p> Введите название товара: <br>
+                <input type="text" name="title"></p>
+                <br>
+                <p> Введите цену: <br>
+                <input type="text" name="price"></p>
+                <br>
+                <p> Выберите количество: <br>
+                <input type="number" name="quantity"></p>
+                <br>
+                <input class="btn-primary" type="submit" value="Создать товар">
+            </form>
+    
+            <div class="container">
+                <div class="row">
+                <table width="500px;" border="1px;">
+                <tr>
+                    <th> Товар </th>
+                    <th> Цена</th>
+                    <th> Кол-во</th>
+                    <th> Итого</th>
+                </tr>
+                <tr>
+                    <td> {{ water.title }} </td>
+                    <td> {{ water.price }}</td>
+                    <td> {{ water.quantity }}</td>
+                    <td> {{ water.amount }}</td>
+                </tr>
+                <tr>
+                    <td> {{ chocolate.title }} </td>
+                    <td> {{ chocolate.price }}</td>
+                    <td> {{ chocolate.quantity }}</td>
+                    <td> {{ chocolate.amount }}</td>
+                </tr>
+    
+            </table>
+        </div>
     </div>
+
+
 
 
 </body>
