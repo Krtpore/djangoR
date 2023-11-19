@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+  <title>newspage</title>
+      
+</head>
+<body>
+    <div class="row">
+    <!-- заготовка под меню -->
+    </div>
+
+    <div class="row">
+        <div class="container-fluid">
+            <div class="row">
+                <h1> Страница списка новостей</h1>
+                <div> Описание: </div> <br>
+                <div> Главная страница с новостями </div> <br>
+                <div> Стиль новостей определен с помощью CSS</div> <br>
+                <div> Для новостей 1,2 и 3 стиль определен с помощью задания класса: "div class='.....'  " </div> <br>
+                <div> Для новостей 4,5 и 6 стиль определен с помощью задания id: "#id"</div> <br>
+                <div> С помощью bootstrap выделено боковое меню и новости с разным заданием стиля на маленьком экране выстраиваются в 1 ряд </div> <br>
+                <div> Новости оформлены в виде карточек с помощью class="card" </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'main/img/news_pict_world.jpg' %}" alt="Мировые новости"> 
+                        <div class="card-body">
+                            <h3> Новость 1. Заголовок обычной новости </h3>
+                            <p1> Аннотация к новости </p1> <br>
+                            <a href="#">Ссылка на новость</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'main/img/news_pict_local.jpg' %}" alt="Местные новости"> 
+                        <div class="card-body">
+                            <div class='breaking'>
+                                <h3> Новость 2. Заголовок "горячей" новости </h3>
+                                <p1> Аннотация к новости </p1>  <br>
+                                <a href="#">Ссылка на новость</a> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'main/img/news_pict_sport.png' %}" alt="Региональные новости"> 
+                        <div class="card-body">
+                            <div  class='regional'>
+                                <h3> Новость 3. Заголовок региональной новости </h3>
+                                <p1> Аннотация к новости </p1> <br>
+                                <a href="#">Ссылка на новость</a> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'main/img/news_pict_world.jpg' %}" alt="Мировые новости"> 
+                        <div class="card-body">
+                            <h3> Новость 4. Заголовок обычной новости </h3>
+                            <p1> Аннотация к новости </p1> <br>
+                            <a href="#">Ссылка на новость</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'main/img/news_pict_local.jpg' %}" alt="Местные новости"> 
+                        <div class="card-body">
+                            <div id='breaking2'>
+                                <h3> Новость 5. Заголовок "горячей" новости  </h3>
+                                <p1> Аннотация к новости </p1> <br>
+                                <a href="#">Ссылка на новость</a>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'main/img/news_pict_sport.png' %}" alt="Региональные новости"> 
+                        <div class="card-body">
+                            <div id='regional2'>
+                                <h3> Новость 6. Заголовок региональной новости  </h3>
+                                <p1> Аннотация к новости </p1> <br>
+                                <a href="#">Ссылка на новость</a> 
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

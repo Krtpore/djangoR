@@ -1,0 +1,14 @@
+<div class="navbar">
+    <nav>      
+        <input type="checkbox" name="menu" id="btn-menu" />
+        <label for="Главное меню">btn menu</label> 
+        <ul>
+        <ul><i class="fa-solid fa-house"></i> <a href="{% url 'main' %}">Домашняя страница</a></ul>
+        <ul><i class="fa-solid fa-tower-cell"></i> <a href="{% url 'news' %}">Все новости</a></ul>
+        <ul><i class="fa-regular fa-newspaper"></i> <a href="{% url 'news_example' %}">Пример новости</a></ul>
+        <ul><i class="fa-solid fa-address-card"></i> <a href="{% url 'user' %}">Страница пользователя</a></ul>
+        <ul><i class="fa-solid fa-bug"></i> <a href="{% url 'page404' %}">Cтраница ошибки</a></ul>
+        <ul><i class="fa-solid fa-address-card"></i> <a href="{% url 'about' %}">О нас</a></ul>
+        </ul>
+    </nav>
+</div>

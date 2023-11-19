@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+<head>
+    <title>{% block title %}page404 example{% endblock %}</title>
+</head>
+<body>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+</body>
+
+{% block body %} 
+    <h1> Page404 template</h1>  <br>  <br>
+    <h3> Кажется что-то сломалось или здесь этого нет</h3>
+    <h3> но мы работаетм над этим.... наверное </h3>
+    <h3> Может домой??? Это сюда: <a href="{% url 'main' %}">Домашняя страница</a> </h3> <br>
+    
+    <img src="{% static 'main/img/page404.png' %}" alt="Упс, что-то пошло не так" style="width:auto;height:400px">
+    
+
+{% endblock %}

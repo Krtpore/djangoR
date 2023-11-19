@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+
+<title>{% block title %}User page{% endblock %}</title>
+
+
+{% block body %} 
+
+    <h1> Заготовка страницы пользователя </h1>
+    <p> Имя на форуме: </p> 
+    <p> Дата регистрации: </p>
+    <p> Адрес электронной почты: </p>
+    <p> Телефон: </p>
+    <p> Фамилия: </p> 
+    <p> Имя: </p>
+    <p> Отчество: </p>
+    <p> Дата рождения: </p>
+    <p> О себе: </p>
+
+{% endblock %}

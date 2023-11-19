@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+<head>
+    <title>{% block title %}About us{% endblock %}</title>
+</head>
+<body>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+</body>
+
+{% block body %} 
+
+<h2> О нас:</h2>
+<img src="{% static 'main/img/man_reader.jpg' %}" alt="Логотип" style="width:auto;height:150px">
+<aside>
+    <h3> Портал самых честных новостей </h3>
+    <div style="text-align:justify;">
+        <p> Лицензия СМИ: отсутствует</p>
+        <p> Юридический адрес: отсутствует</p>
+        <p> Наш офис: отсутствует</p>
+        <p> Телефон: 8 001 56 57 58</p>
+        <p> Email: jhon_doe@email.com</p>
+    </div>
+</aside>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+/* body {
+  background-color: #cacaca;
+} */
+
+.headfoot {
+  background-color: #8ce085;
+  color: #2f662b;
+  text-align: center;
+}
+
+.navbar {
+  background-color: #b9b9b9;
+  padding: 5px;
+}
+
+.anyblock {
+  background-color: #777777;
+}
+
+.breaking {
+  color: #a71900;
+  font-style: normal;
+  font-size: x-large;
+}
+
+.regional {
+  color: DarkBlue;
+  font-style: oblique;
+}
+
+#breaking2 {
+  color: #a71900;
+  font-style: normal;
+  font-size: x-large;
+}
+
+#regional2 {
+  color: DarkBlue;
+  font-style: oblique;
+}
+
+aside {
+  width: 70%;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  float: right;
+  box-shadow: inset 5px 0 5px -5px #29627e;
+  font-style: italic;
+  color: #29627e;
+}
+
+aside > p {
+  margin: 0.5rem;
+}
+/* 
+.wraptocenter {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  width: 200px;
+  height: 200px;
+  background-color: #999;
+}
+.wraptocenter * {
+  vertical-align: middle;
+} */
+
+
+/* dropdown menu */
+
+nav{
+  background: #000;
+  padding: 15px 10px;   
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+nav li{
+  display: inline-block;
+  vertical-align: top;
+}
+nav a{
+  color: #fff;
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+nav a:hover{
+  border: 1px solid #fff;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+nav label {    
+  display: none;
+  border: 1px solid #fff;   
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+nav label:hover{
+  color: #f00;
+  border: 1px solid #f00;
+}
+
+
+@media screen and (max-width: 500px) {
+  
+  nav label{
+       display: inline-block;
+  }
+  nav > ul {
+      display: none;
+  }
+  input[type="checkbox"]:checked ~ label + ul {
+      display: block;
+  }
+  
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+
+<head>
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+
+<html> 
+<body>
+    <div class="container">
+        <div class="body">
+            {% include 'main/header.html' %}
+            <div class="row">
+                    <div class="col-3">
+                        {% block navbar %} {% include 'main/navbar.html' %}{% endblock %}
+                    </div>
+                    <div class="col-9">
+                        {% block body %} {% endblock %}
+                    </div>
+            </div>
+            {% block foot %} {% include 'main/foot.html' %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>
+
+
