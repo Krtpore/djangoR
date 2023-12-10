@@ -9,9 +9,16 @@
 }
 
 .navbar {
+  background-color: #f5f5f5;
+  padding-right: 20px;
+  padding-top: 20px;
+  min-height: calc(100vh - 50px);
+}
+
+/* {
   background-color: #b9b9b9;
   padding: 5px;
-}
+} */
 
 .anyblock {
   background-color: #777777;
@@ -71,3 +78,4 @@ aside > p {
      display: none;
   }
 }
+
