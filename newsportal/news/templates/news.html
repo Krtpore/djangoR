@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+<head>
+    <title>{% block title %}news page{% endblock %}</title>
+</head>
+<body>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+</body>
+
+{% block body %} {% include 'main/news_list.html' %}{% endblock %}
