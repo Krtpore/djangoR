@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+  <title>newspage</title>  
+</head>
+
+<body>
+		{% for article in Article %}
+			<div class="row">
+				<h3> {{ article.title }} </h3>
+				<p1> Опубликовано {{article.date}} </p1> <br>
+				<p1> Изменено {{article.date_change}} </p1> <br>
+				<p1> {{article.anouncement}} </p1> <br>
+				<a href="{{article.get_absolute_url}}">Читать новость</a>
+			</div>
+		{% endfor %}
+</body>
