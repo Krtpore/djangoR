@@ -10,8 +10,6 @@ from django.contrib.auth.decorators import login_required
 
 import json
 
-
-
 def search_news_auto(request):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         q = request.GET.get('term','')
