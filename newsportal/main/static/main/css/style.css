@@ -15,6 +15,18 @@
   min-height: calc(100vh - 50px);
 }
 
+.margins10 {
+  margin: 10px;
+}
+
+.margins5 {
+  margin: 5px;
+}
+
+.borders5 {
+  border: 9px;
+}
+
 /* {
   background-color: #b9b9b9;
   padding: 5px;

@@ -1,6 +1,30 @@
-from django.shortcuts import render, HttpResponse
-
+from django.shortcuts import render, HttpResponse, redirect
+from django.urls import reverse_lazy
 from .models import *
+from django.db import connection, reset_queries
+from django.views.generic import DetailView, DeleteView, UpdateView
+from django.contrib.auth.decorators import login_required
+
+#  from .forms import *
+#человек не аутентифицирован - отправляем на страницу другую
+
+import json
+
+
+
+def search_news_auto(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        q = request.GET.get('term','')
+        articles = Article.objects.filter(title__icontains=q)
+        results =[]
+        for a in articles:
+            results.append(a.title)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data,mimetype)
+
 
 def news(request):
     articles = Article.objects.all()
