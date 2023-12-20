@@ -10,6 +10,7 @@ from .forms import *
 
 import json
 
+@login_required(login_url="/")
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
