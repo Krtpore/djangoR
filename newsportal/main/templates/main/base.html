@@ -14,7 +14,9 @@
             {% include 'main/header.html' %}
             <div class="row">
                     <div class="col-3">
-                        {% block navbar %} {% include 'main/navbar.html' %}{% endblock %}
+                        {% block navbar %} 
+                        {% include 'main/navbar.html' %}
+                        {% endblock %}
                     </div>
                     <div class="col-9">
                         {% block body %} {% endblock %}

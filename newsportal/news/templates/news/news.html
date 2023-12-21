@@ -1,46 +1,17 @@
 {% extends 'main/base.html' %}
-<head>
-    <title>{% block title %}news page{% endblock %}</title>
-</head>
-<body>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
-</body>
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block title %}news page{% endblock %}
+{% load static %}
+<!-- <link rel="stylesheet" href="{% static 'main/css/style.css' %}" /> -->
+
 
 {% block body %} 
-<!-- jQuery !-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
-<!-- jQuery UI !-->
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-<script>
-    $(function() {
-      $("#search_news").autocomplete({
-        source: "search_news_auto/",
-        select: function (event, ui) { //item selected
-          AutoCompleteSelectHandler(event, ui)
-        },
-        minLength: 2,
-      });
-    });
-    function AutoCompleteSelectHandler(event, ui)
-    {
-      var selectedObj = ui.item;
-    }
-</script>
-
-<div class="margins5">
-    <div class="row" align="right">
-        <div class="search">
-            <label for="search_news"></label>
-            <input id="search_news" placeholder="Искать новости">
-            <button class="btn btn-primary">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </div>
+<div class="row">
+{% include "news/news_list.html" %}
 </div>
-
-{% include 'news/news_list.html' %}
 {% endblock %}

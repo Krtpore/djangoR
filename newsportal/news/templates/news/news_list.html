@@ -1,19 +1,86 @@
-<!DOCTYPE html>
+{% extends 'news/news.html' %}
 {% load static %}
 {% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  {% bootstrap_css %}
-  {% bootstrap_javascript %}
-  <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
-  <title>newspage</title>
+<!-- <link rel="stylesheet" href="{% static 'main/css/style.css' %}" /> -->
+{% block title %} newslist {% endblock %}
       
-</head>
-<body>
+{% block body %}
+    <!-- jQuery !-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+<!-- jQuery UI !-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script>
+    $(function() {
+      $("#search_news").autocomplete({
+        source: "search_news_auto/",
+        select: function (event, ui) { //item selected
+          AutoCompleteSelectHandler(event, ui)
+        },
+        minLength: 2,
+      });
+    });
+    function AutoCompleteSelectHandler(event, ui)
+    {
+      var selectedObj = ui.item;
+    }
+</script>
+    <div class="row">
+    <div class="margins5">
+        <div class="row" align="right">
+            <div class="search">
+                <label for="search_news"></label>
+                <input id="search_news" placeholder="Искать новости">
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="row margins5" align="center">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group col-12" style="width:97%">
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="row">
+                                <div class="col-6">
+                                    <img src="{% static 'main/img/icon-filter.png' %}" alt="Иконка фильтра" style="width:auto;height:35px">
+                                </div>
+                                <div class="col-6">
+                                    {% if all_articles_len != articles|length %} 
+                                    <p3 style="text-align: center; vertical-align: middle;"> {{ articles|length }} </p3> 
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    <select class="form-select col" name="author_filter" style="width:100%">
+                        <option value="0">Все авторы</option>
+                        {% for author in author_list %}
+                        <option value="{{ author.id }}" {% if selected_author == author.id %} selected {% endif %}> {{ author.username }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    <select class="form-select col" name="category_filter" style="width:100%">
+                        <option value="0">Все категории</option>
+                        {% for c in categories %}
+                        <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" class="btn btn-success col-2" value="Применить">
+                    </div>
+                </div>
+            </form>
+        </label>
+    </div>
+
     {% for article in articles %}
     <div class="card" style="background-color:#f5f5f5">
         <div class="container-fluid" style="border:1px solid #cecece;">
@@ -28,5 +95,5 @@
         </div>
     </div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
+
