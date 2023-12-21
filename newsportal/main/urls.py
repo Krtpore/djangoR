@@ -6,7 +6,6 @@ from . import views
 urlpatterns = [
     path('', views.main, name = 'main'),
     path('main/', views.main, name = 'main'),
-    path('news/', views.news, name = 'news'),
     path('user/', views.user, name = 'user'),
     path('navbar/', views.navbar, name = 'navbar'),
     path('page404/', views.page404, name = 'page404'),

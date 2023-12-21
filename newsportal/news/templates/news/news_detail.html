@@ -1,0 +1,29 @@
+{% extends 'news/news.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!-- <link rel="stylesheet" href="{% static 'main/css/style.css' %}" /> -->
+{% block title %} newslist {% endblock %}
+      
+{% block body %}
+    <div class="card" style="background-color:#f5f5f5">
+        <div class="container-fluid" style="border:1px solid #cecece; margin: 5px">
+            <img class="card-img-top" src="{% static 'main/img/news_pict_world.jpg' %}" alt="Мировые новости" style="width:200px;height:auto;align-items:center;vertical-align: middle;"> 
+            <div class="card-body">
+                <h3><em> {{ article.title }} </em> </h3>
+                <p1> <i><strong>Опубликовано</strong></i> {{ article.date }} </p1> <br>
+                <p1> <i><strong>Изменено</strong></i> {{ article.date_change }} </p1> <br>
+                <p1 style="text-align: justify;"> <i><strong>Аннотация</strong></i> </p1> <br>
+                <p1> {{ article.anouncement }} </p1> <br> 
+                <br>
+                <p1 style="text-align: justify;"> {{ article.text }} </p1> <br>
+            </div>
+        <a class="btn btn-warning" href="{% url 'news_delete' article.pk %}">Удалить</a>
+        <a class="btn btn-primary" href="{% url 'news_update' article.pk %}">Редактировать</a>
+
+        </div>
+    </div>
+{% endblock %}
+

@@ -2,13 +2,32 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.urls import reverse_lazy
 from .models import *
 from django.db import connection, reset_queries
-from django.views.generic import DetailView, DeleteView, UpdateView
+from django.views.generic import DetailView, DeleteView, UpdateView, ListView
 from django.contrib.auth.decorators import login_required
 
 from .forms import *
 #человек не аутентифицирован - отправляем на страницу другую
 
 import json
+
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'news/news_detail.html'
+    context_object_name = 'article'
+
+class ArticleUpdateView(UpdateView):
+    model = Article
+    template_name = 'news/create_article.html'
+    fields = ['title','anouncement','text','tags']
+
+class ArticleDeleteView(DeleteView):
+    model = Article
+    success_url = reverse_lazy('news') #именованная ссылка или абсолютную
+    template_name = 'news/delete_article.html'
+
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'news/news_list.html'
 
 @login_required(login_url="/")
 def create_article(request):
@@ -64,9 +83,6 @@ def news(request):
     
     return render(request,'news/news_list.html',context)
 
-
-
-
 def news_search(request):
     author_list = User.objects.all()
     selected = 0
@@ -75,37 +91,13 @@ def news_search(request):
         if  selected == 0:
             articles = Article.objects.all()
 
-    #     else:
-    #         articles = Article.objects.filter(author=selected)
-    # else:
-    #     articles = Article.objects.all()
-    # context = {'articles':articles, 'author_list':author_list,'selected':selected }
-    # return render(request,'news/news_list.html',context)
-    
-    # для справки
-    # articles = Article.objects.all().first()
-    # print(articles)
-    # articles = Article.objects.filter(author=request.user.id)
-    # print('автор новости', article.title, ':', article.author.username)
-    # print(articles)
-    # articles = Article.objects.get(author=2)
-    
-    # tag = Tag.objects.filter(title='World')[0]
-    # tagged_news = Article.objects.filter(tags=tag)
-    # print(tagged_news)
+# def detail(request, id):
+#     article = Article.objects.filter(id=id)
+#     return HttpResponse(f'<h1>{article}</h1>')
+#     # return HttpResponse(f'<h1>{article.title}</h1>')
 
-    # user_list = User.objects.all()
-    # print(user_list)
-    # for user in user_list:
-    #     print(user, Article.objects.filter(author=user))
-
-def detail(request, id):
-    article = Article.objects.filter(id=id)
-    return HttpResponse(f'<h1>{article}</h1>')
-    # return HttpResponse(f'<h1>{article.title}</h1>')
-
-    # articles = Article.objects.all()
-    # s=''
-    # for article in articles:
-    #     s+=f'<h1>{article.title}</h1><br>'
-    # return HttpResponse(s)
+#     # articles = Article.objects.all()
+#     # s=''
+#     # for article in articles:
+#     #     s+=f'<h1>{article.title}</h1><br>'
+#     # return HttpResponse(s)
