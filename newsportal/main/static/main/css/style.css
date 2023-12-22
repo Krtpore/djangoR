@@ -31,6 +31,10 @@
   margin: 10px 5%;
 }
 
+.link-active {
+  color: #0D6EFD;
+}
+
 /* {
   background-color: #b9b9b9;
   padding: 5px;
@@ -76,18 +80,20 @@ aside > p {
   margin: 0.5rem;
 }
 
-/* 
 .wraptocenter {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
-  width: 200px;
-  height: 200px;
-  background-color: #999;
 }
-.wraptocenter * {
+
+.navbaricons {
+  text-align: center;
   vertical-align: middle;
-} */
+  width:32px;
+  height:auto
+}
+
+
 
 @media (max-width: 767px) {                  
   .content-to-hide {

@@ -7,13 +7,21 @@
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
 <script src="https://kit.fontawesome.com/a97047fead.js" crossorigin="anonymous"></script>
-    
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<!--скрипты ниже для работы выпадающего меню пользователя-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+
 <div class="container-fluid">
     <div class="navbar">
         <div class="row" >
             <div class="col-3 col-sm-4 col-md-4 col-lg-3">
                 <div class="d-none d-xl-block">
-                    <img src="{% static 'main/img/world.png' %}" alt="Иконка меню" style="width:auto;height:55px">
+                    <img src="{% static 'main/img/site-logo.png' %}" alt="Иконка меню" style="width:auto;height:55px">
                 </div>
             </div>
             <div class="col-9 col-sm-5 col-md-8 col-lg-9">
@@ -24,11 +32,40 @@
             <div class="row">
                 <ul>
                     <div class="row">
-                    <ul> <a href="{% url 'main' %}"> <i class="fa-solid fa-house"> </i> <span class="content-to-hide">Домашняя страница</span></a></ul>
-                    <ul> <a href="{% url 'news' %}"> <i class="fa-solid fa-tower-cell"></i> <span class="content-to-hide">Все новости</span></a></ul>
-                    <ul> <a href="{% url 'create_article' %}"> <i class="fa-solid fa-tower-cell"></i> <span class="content-to-hide">Предложить новость</span></a></ul>
-                    <ul> <a href="{% url 'user' %}"> <i class="fa-solid fa-address-card"></i> <span class="content-to-hide">Страница пользователя</span></a></ul>
-                    <ul> <a href="{% url 'about' %}"> <i class="fa-solid fa-address-card"></i> <span class="content-to-hide">О нас</span></a></ul>
+                        <ul>
+                            <a href="{% url 'main' %}"> <img src="{% static 'main/img/icon-home.png' %}" class="navbaricons" alt="Иконка домашней страницы" style="text-align: center;"> 
+                                <span class="content-to-hide">Домашняя страница</span>
+                            </a> 
+                        </ul>
+                        <ul> 
+                            <a href="{% url 'news' %}"> <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" class="navbaricons" style="text-align: center;">
+                            <span class="content-to-hide">Все новости</span></a>
+                        </ul>
+                        <ul> 
+                            <a href="{% url 'create_article' %}"> <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons" style="text-align: center;">
+                            <span class="content-to-hide">Предложить новость</span></a>
+                        </ul>
+                        <ul>
+                            <a href="{% url 'user' %}"> <img src="{% static 'main/img/avatar.png' %}" alt="Иконка пользователя" class="navbaricons" style="text-align: center;">
+                            <span class="content-to-hide">Страница пользователя</span></a>
+                        </ul>
+                        <ul> 
+                            <a href="{% url 'about' %}"> <img src="{% static 'main/img/icon-about-us.png' %}" alt="Иконка просмотра новостей" class="navbaricons" style="text-align: center;"> 
+                                <span class="content-to-hide">О нас</span></a>
+                        </ul>
+                        <ul> 
+                            <a href="{% url 'contact_page' %}"> <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка пользователя" class="navbaricons" style="text-align: center;">
+                                <span class="content-to-hide">Написать нам</span></a>
+                        </ul>
+
+                        <!-- <ul> <a href="{% url 'news' %}"> <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" style="width:32px;height:auto"> <span class="content-to-hide">Все новости</span></a></ul> -->
+                        <!-- <ul> <a href="{% url 'news' %}"> <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">Все новости</span></a></ul> -->
+                        <!-- <ul> <a href="{% url 'create_article' %}"> <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">Предложить новость</span></a></ul> -->
+                        <!-- <ul> <a href="{% url 'user' %}"> <img src="{% static 'main/img/avatar.png' %}" alt="Иконка пользователя" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">Страница пользователя</span></a></ul> -->
+                        <!-- <ul> <a href="{% url 'about' %}"> <img src="{% static 'main/img/icon-about-us.png' %}" alt="Иконка просмотра новостей" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">О нас</span></a></ul> -->
+                        <!-- <ul> <a href="{% url 'contact_page' %}"> <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка пользователя" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">Написать нам</span></a></ul> -->
+
+
                     <p></p>
                     <ul>
                         <div class="input-group rounded">
