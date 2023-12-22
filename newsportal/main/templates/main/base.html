@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 {% load static %}
 {% load bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
 <link rel="icon" href="{% static 'favicon.ico' %}" />
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
@@ -12,18 +16,24 @@
 <body>
     <div class="container">
         <div class="body">
-            {% include 'main/header.html' %}
-            <div class="row">
+            <div class="row margins10">
+                {% include 'main/header.html' %}
+            </div>
+            <div class="row" style="display: flex;">
                     <div class="col-3">
-                        {% block navbar %} 
-                        {% include 'main/navbar.html' %}
-                        {% endblock %}
+                        <aside class="sticky">
+                            {% block navbar %} 
+                            {% include 'main/navbar.html' %}
+                            {% endblock %}
+                        </aside>
                     </div>
                     <div class="col-9">
                         {% block body %} {% endblock %}
                     </div>
             </div>
-            {% block foot %} {% include 'main/foot.html' %}{% endblock %}
+            <div class="row margins10">
+                {% include 'main/foot.html' %}
+            </div>
         </div>
     </div>
 </body>

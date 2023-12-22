@@ -18,55 +18,45 @@
 
 <div class="container-fluid">
     <div class="navbar">
-        <div class="row" >
-            <div class="col-3 col-sm-4 col-md-4 col-lg-3">
-                <div class="d-none d-xl-block">
+        <div class="row">
+            <div class="row wraptocenter">
+                <div class="col-3 col-sm-4 col-md-4 col-lg-3">
                     <img src="{% static 'main/img/site-logo.png' %}" alt="Иконка меню" style="width:auto;height:55px">
                 </div>
-            </div>
-            <div class="col-9 col-sm-5 col-md-8 col-lg-9">
-                <div class="d-none d-xl-block">
-                    <span class="content-to-hide"><h4> Главное <br> меню </h4></span>
+                <div class="col-9 col-sm-8 col-md-8 col-lg-9 d-none d-xl-block">
+                    <div class="d-none d-xl-block">
+                        <span class="content-to-hide"><h4> Меню сайта </h4></span>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <ul>
                     <div class="row">
-                        <ul>
+                        <ul class="navbar_ul">
                             <a href="{% url 'main' %}"> <img src="{% static 'main/img/icon-home.png' %}" class="navbaricons" alt="Иконка домашней страницы" style="text-align: center;"> 
                                 <span class="content-to-hide">Домашняя страница</span>
                             </a> 
                         </ul>
-                        <ul> 
+                        <ul class="navbar_ul">
                             <a href="{% url 'news' %}"> <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" class="navbaricons" style="text-align: center;">
                             <span class="content-to-hide">Все новости</span></a>
                         </ul>
-                        <ul> 
+                        <ul class="navbar_ul"> 
                             <a href="{% url 'create_article' %}"> <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons" style="text-align: center;">
                             <span class="content-to-hide">Предложить новость</span></a>
                         </ul>
-                        <ul>
+                        <ul class="navbar_ul"> 
                             <a href="{% url 'user' %}"> <img src="{% static 'main/img/avatar.png' %}" alt="Иконка пользователя" class="navbaricons" style="text-align: center;">
                             <span class="content-to-hide">Страница пользователя</span></a>
-                        </ul>
-                        <ul> 
+                        </ul id="navbar_ul">
+                        <ul class="navbar_ul"> 
                             <a href="{% url 'about' %}"> <img src="{% static 'main/img/icon-about-us.png' %}" alt="Иконка просмотра новостей" class="navbaricons" style="text-align: center;"> 
                                 <span class="content-to-hide">О нас</span></a>
-                        </ul>
-                        <ul> 
+                        </ul id="navbar_ul">
+                        <ul class="navbar_ul"> 
                             <a href="{% url 'contact_page' %}"> <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка пользователя" class="navbaricons" style="text-align: center;">
                                 <span class="content-to-hide">Написать нам</span></a>
                         </ul>
-
-                        <!-- <ul> <a href="{% url 'news' %}"> <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" style="width:32px;height:auto"> <span class="content-to-hide">Все новости</span></a></ul> -->
-                        <!-- <ul> <a href="{% url 'news' %}"> <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">Все новости</span></a></ul> -->
-                        <!-- <ul> <a href="{% url 'create_article' %}"> <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">Предложить новость</span></a></ul> -->
-                        <!-- <ul> <a href="{% url 'user' %}"> <img src="{% static 'main/img/avatar.png' %}" alt="Иконка пользователя" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">Страница пользователя</span></a></ul> -->
-                        <!-- <ul> <a href="{% url 'about' %}"> <img src="{% static 'main/img/icon-about-us.png' %}" alt="Иконка просмотра новостей" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">О нас</span></a></ul> -->
-                        <!-- <ul> <a href="{% url 'contact_page' %}"> <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка пользователя" style="wraptocenter;width:32px;height:auto"> <span class="content-to-hide">Написать нам</span></a></ul> -->
-
-
-                    <p></p>
                     <ul>
                         <div class="input-group rounded">
                             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
@@ -80,5 +70,3 @@
         </div>
     </div>
 </div>
-
-
