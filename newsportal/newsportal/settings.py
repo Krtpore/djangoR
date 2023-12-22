@@ -84,24 +84,24 @@ WSGI_APPLICATION = 'newsportal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eh0388pe$newsportal',
-        'USER': 'eh0388pe',
-        'PASSWORD': 'xc3pМq0Wt5da8s',
-        'HOST': 'eh0388pe.mysql.pythonanywhere-services.com',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-# PG вариант 2 нет доступа к БД со стороны python anywhere
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'eh0388pe$newsportal',
+#         'USER': 'eh0388pe',
+#         'PASSWORD': 'xc3pМq0Wt5da8s',
+#         'HOST': 'eh0388pe.mysql.pythonanywhere-services.com',
+#     }
+# }
+
+# PG вариант 2 нет доступа к БД со стороны python anywhere доступ к внещке закрыт, только белый список
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -114,7 +114,7 @@ DATABASES = {
 #     }
 # }
 
-# нестабильно работает
+# нет доступа к БД со стороны python anywhere
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
