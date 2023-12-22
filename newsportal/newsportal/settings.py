@@ -91,29 +91,28 @@ WSGI_APPLICATION = 'newsportal.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'eh0388pe$newsportal',
-#         'USER': 'eh0388pe',
-#         'PASSWORD': 'xc3pМq0Wt5da8s',
-#         'HOST': 'eh0388pe.mysql.pythonanywhere-services.com',
-#         'PORT': '3306',
-#     }
-# }
-
-# PG вариант 2
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'newsportal',
-        'USER': 'newsportal_user',
-        'PASSWORD': 'ErFlROsHpj14',
-        'HOST': 'db.gwymkkqdlspoteuyfpur.supabase.co',
-        'PORT': '5432',
-        # 'OPTIONS': {'sslmode': 'require'},
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'eh0388pe$newsportal',
+        'USER': 'eh0388pe',
+        'PASSWORD': 'xc3pМq0Wt5da8s',
+        'HOST': 'eh0388pe.mysql.pythonanywhere-services.com',
     }
 }
+
+# PG вариант 2 нет доступа к БД со стороны python anywhere
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'newsportal',
+#         'USER': 'newsportal_user',
+#         'PASSWORD': 'ErFlROsHpj14',
+#         'HOST': 'db.gwymkkqdlspoteuyfpur.supabase.co',
+#         'PORT': '5432',
+#         'OPTIONS': {'sslmode': 'require'},
+#     }
+# }
 
 # нестабильно работает
 # DATABASES = {
