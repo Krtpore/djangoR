@@ -10,11 +10,11 @@
 
 .navbar {
   position: sticky;
+  align-content: flex-start;
   background-color: #f5f5f5;
   padding-right: 10px;
   padding-left: 10px;
   min-height: calc(100vh - 50px);
-
 }
 
 #navbar_ul {
@@ -69,17 +69,12 @@
   color: #0D6EFD;
 }
 
-/* {
-  background-color: #b9b9b9;
-  padding: 5px;
-} */
-
 .anyblock {
   background-color: #777777;
 }
 
 .wraptocenter {
-  /* display: table-cell; */
+  display: table-cell;
   text-align: center;
   vertical-align: middle;
 }

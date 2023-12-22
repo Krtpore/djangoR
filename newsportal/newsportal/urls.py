@@ -36,5 +36,6 @@ if settings.DEBUG:
     ] + urlpatterns
 
 
-
+admin.site.site_header = "Панель администрирования новостного портала"
+admin.site.index_title = "Портал честных новостей"
 

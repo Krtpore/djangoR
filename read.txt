@@ -1,4 +1,8 @@
 
 админка: admin / admin
 
+
 JustUser / qqaazzwwssxx
+user_reader_1 / edcrfvtgb111
+
+переключил на внешний postgres, стало медленнее + надо ждать подъем инстанса БД из спячки после первого запуска
