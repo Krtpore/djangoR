@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'newsportal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
@@ -101,6 +101,19 @@ DATABASES = {
 #         'PORT': '3306',
 #     }
 # }
+
+# PG вариант 2
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'newsportal',
+        'USER': 'newsportal_user',
+        'PASSWORD': 'ErFlROsHpj14',
+        'HOST': 'db.gwymkkqdlspoteuyfpur.supabase.co',
+        'PORT': '5432',
+        # 'OPTIONS': {'sslmode': 'require'},
+    }
+}
 
 # нестабильно работает
 # DATABASES = {
