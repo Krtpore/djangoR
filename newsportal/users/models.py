@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 # Create your models here.
 
@@ -25,3 +25,23 @@ class Account(models.Model):
         ordering = ['user', 'email']
         verbose_name = 'Аккуант'
         verbose_name_plural = 'Аккаунты'
+
+
+# class Image(models.Model):
+#     user = models.ForeignKey(Account, on_delete=models.CASCADE)
+#     title = models.CharField(max_length=100, blank=True)
+#     image = models.ImageField(upload_to='account_images/')
+
+#     def __str__(self):
+#         return self.title
+
+#     def image_tag(self):
+#         if self.image is not None:
+#             return mark_safe(f'<img src="{self.image.url}" height="40px" width="auto" />')
+#         else:
+#             return '(no image)'
+        
+#     class Meta:
+#         # ordering = ['title','date']
+#         verbose_name= 'Картинка аккаунта'
+#         verbose_name_plural='Картинки аккаунтов'
