@@ -1,9 +1,11 @@
+from typing import Any
 from django.shortcuts import render, HttpResponse, redirect
 from django.urls import reverse_lazy
 from .models import *
 from django.db import connection, reset_queries
 from django.views.generic import DetailView, DeleteView, UpdateView, ListView
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from .forms import *
 #человек не аутентифицирован - отправляем на страницу другую
@@ -14,6 +16,13 @@ class ArticleDetailView(DetailView):
     model = Article
     template_name = 'news/news_detail.html'
     context_object_name = 'article'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_object = self.object
+        images = Image.objects.filter(article=current_object)
+        context['images'] = images
+        return context
 
 class ArticleUpdateView(UpdateView):
     model = Article
@@ -32,7 +41,7 @@ class ArticleListView(ListView):
 @login_required(login_url="/")
 def create_article(request):
     if request.method == 'POST':
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             current_user = request.user
             if current_user.id != None: #проверили что не аноним
@@ -40,7 +49,9 @@ def create_article(request):
                 new_article.author = current_user
                 new_article.save() #сохраняем в БД
                 form.save_m2m()
-                return redirect('news_index')
+                for img in request.FILES.getlist('image_field'):
+                    Image.objects.create(article=new_article, image=img, title=img.name)
+                return redirect('news')
     else:
         form = ArticleForm()
     return render(request,'news/create_article.html', {'form':form})

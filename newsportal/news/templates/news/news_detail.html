@@ -4,27 +4,58 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-<!-- <link rel="stylesheet" href="{% static 'main/css/style.css' %}" /> -->
-{% block title %} newslist {% endblock %}
-      
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+{% block title %} Чтение новости {% endblock %}
+
 {% block body %}
-    <div class="card" style="background-color:#f5f5f5">
-        <div class="margins5 paddings5">
-            <div class="container-fluid">
-                <img class="card-img-top" src="{% static 'main/img/news_pict_world.jpg' %}" alt="Мировые новости" style="width:200px;height:auto;align-items:center;vertical-align: middle;"> 
-                <div class="card-body">
-                    <h3><em> {{ article.title }} </em> </h3>
-                    <p1> <i><strong>Опубликовано</strong></i> {{ article.date }} </p1> <br>
-                    <p1> <i><strong>Изменено</strong></i> {{ article.date_change }} </p1> <br>
-                    <p1 style="text-align: justify;"> <i><strong>Аннотация</strong></i> </p1> <br>
-                    <p1> {{ article.anouncement }} </p1> <br> 
-                    <br>
-                    <p1 style="text-align: justify;"> {{ article.text }} </p1> <br>
-                </div>
-            <a class="btn btn-warning" href="{% url 'news_delete' article.pk %}">Удалить</a>
-            <a class="btn btn-primary" href="{% url 'news_update' article.pk %}">Редактировать</a>
-            </div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous">
+</script>
+
+<div class="card" style="background-color:#f5f5f5">
+    <div class="margins5 paddings5">
+        <div class="container-fluid">
+            <div class="card-body">
+                <h3><em> {{ article.title }} </em> </h3>
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for image in article.image_set.all %}
+                            <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
+                                <img class="d-block" src="{{ image.image.url }}"
+                                        style="margin:auto; height:300px; width:auto; border-radius:5px;">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                <p1> <i><strong>Опубликовано</strong></i> {{ article.date }} </p1> <br>
+                <p1> <i><strong>Изменено</strong></i> {{ article.date_change }} </p1> <br>
+                <p1 style="text-align: justify;"> <i><strong>Аннотация</strong></i> </p1> <br>
+                <p1> {{ article.anouncement }} </p1> <br> 
+                <br>
+                <p1 style="text-align: justify;"> {{ article.text }} </p1> <br>
+            </div> <br>
+        <a class="btn btn-outline-danger" href="{% url 'news_delete' article.pk %}">Удалить новость</a>
+        <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}">Редактировать новость</a>
         </div>
     </div>
+</div>
 {% endblock %}
 

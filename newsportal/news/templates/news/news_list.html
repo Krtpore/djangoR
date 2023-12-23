@@ -5,7 +5,7 @@
 {% bootstrap_javascript %}
 
 <!-- <link rel="stylesheet" href="{% static 'main/css/style.css' %}" /> -->
-{% block title %} newslist {% endblock %}
+{% block title %} Все новости {% endblock %}
       
 {% block body %}
     <!-- jQuery !-->
@@ -84,7 +84,6 @@
     {% for article in articles %}
     <div class="card" style="background-color:#f5f5f5">
         <div class="container-fluid" style="border:1px solid #cecece;">
-            <img class="card-img-top" src="{% static 'main/img/news_pict_world.jpg' %}" alt="Мировые новости" style="width:200px;height:auto"> 
             <div class="card-body">
                 <h3> {{ article.title }}  </h3>
                 <p1>Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</p>
