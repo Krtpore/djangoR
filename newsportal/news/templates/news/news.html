@@ -6,12 +6,10 @@
 
 {% block title %}news page{% endblock %}
 {% load static %}
-<!-- <link rel="stylesheet" href="{% static 'main/css/style.css' %}" /> -->
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
 
 {% block body %} 
 
-<div class="row">
 {% include "news/news_list.html" %}
-</div>
 {% endblock %}
