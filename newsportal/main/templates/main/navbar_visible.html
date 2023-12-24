@@ -74,8 +74,8 @@
                     </div>
                   {% else %}
                     <div class="text-left mb-3">
-                      <a href="{% url 'login' %}" class="btn btn-light disabled" role="button">
-                      <img src="{% static 'main/img/login_picture.png' %}" alt="Иконка создания новости" class="navbaricons">
+                      <a href="{% url 'login' %}" class="btn btn-light disabled" role="button" disabled>
+                      <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
                       <span class="content-to-hide">Предложить новость</span></a>
                     </div>
                   {% endif %}
@@ -89,13 +89,6 @@
                           <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка письма" class="navbaricons">
                           <span class="content-to-hide">Написать нам</span></a>
                   </div>
-                  <!-- <div class="text-left mb-3">
-                    <a href="{% url 'user' %}" class="btn btn-light" role="button">
-                    <img src="{% static 'main/img/avatar.png' %}" alt="Иконка пользователя" class="navbaricons">
-                    <span class="content-to-hide perenos">Мой кабинет</span></a>
-                  </div> -->
-
-                  
                   <div class="text-left mb-3">
                     {% if request.user.id %}  <!-- проверяем аутентификацию-->
                       <div class="dropdown text-left mb-3">
@@ -121,18 +114,6 @@
                       </div>
                     {% endif %}
                   </div>
-                                   
-
-
-
-
-
-
-
-
-
-
-        <br>
         <br>
         <br>
         <br>
