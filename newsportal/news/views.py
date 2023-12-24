@@ -38,7 +38,7 @@ class ArticleListView(ListView):
     model = Article
     template_name = 'news/news_list.html'
 
-@login_required(login_url="/")
+@login_required(login_url=settings.LOGIN_URL)
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES)

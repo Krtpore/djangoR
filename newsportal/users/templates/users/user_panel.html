@@ -56,7 +56,40 @@
       </div>
     <div class="row">
             <div class="col-12">
-                  <div class="text-left mb-3">
+                <div class="text-left mb-3">
+                  <a href="{% url 'main' %}" class="btn btn-light" role="button">
+                    <img src="{% static 'main/img/user-logout.png' %}" alt="Главное меню" class="navbaricons"> 
+                  <span class="content-to-hide">Вернуться в главное меню</span></a>
+                </div>
+                 <!-- Пустышка  -->
+                <div class="text-left mb-3">
+                  <a href="#" class="btn btn-light disabled" role="button" disabled>
+                  <span> </span></a>
+                </div>
+                <div class="text-left mb-3">
+                  <a href="#" class="btn btn-light" role="button">
+                  <img src="{% static 'main/img/icon-home.png' %}" alt="Иконка профиля пользователя" class="navbaricons"> 
+                  <span class="content-to-hide">Мой профиль</span></a>
+                </div>  
+                <div class="text-left mb-3">
+                  <a href="#" class="btn btn-light" role="button">
+                  <img src="{% static 'main/img/icon-home.png' %}" alt="Иконка мои публикации" class="navbaricons"> 
+                  <span class="content-to-hide">Мои публикации</span></a>
+                </div>  
+                <div class="text-left mb-3">
+                  <a href="{% url 'logout' %}" class="btn btn-light" role="button">
+                    <img src="{% static 'main/img/user-logout.png' %}" alt="Иконка выхода" class="navbaricons"> 
+                  <span class="content-to-hide">Мои публикации</span></a>
+                </div> 
+
+
+
+
+
+
+
+
+                  <!-- <div class="text-left mb-3">
                       <a href="{% url 'main' %}" class="btn btn-light" role="button">
                       <img src="{% static 'main/img/icon-home.png' %}" alt="Иконка домашней страницы" class="navbaricons"> 
                       <span class="content-to-hide">Домашняя страница</span></a>
@@ -66,7 +99,7 @@
                       <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" class="navbaricons">
                       <span class="content-to-hide">Все новости</span></a> 
                   </div>
-                  <!-- Был редирект на страницу логина, но переделал кнопку в disabled -->
+                  Был редирект на страницу логина, но переделал кнопку в disabled
                   {% if request.user.id %}
                     <div class="text-left mb-3">
                         <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
@@ -91,14 +124,15 @@
                           <span class="content-to-hide">Написать нам</span></a>
                   </div>
                   <div class="text-left mb-3">
-                    {% if request.user.id %}  <!-- проверяем аутентификацию-->
-                      <div class="dropdown text-left mb-3">
+                    {% if request.user.id %}  -->
+                    <!-- проверяем аутентификацию-->
+                      <!-- <div class="dropdown text-left mb-3">
                         <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <img src="{{ request.user.account.account_image.url }}" alt="Иконка пользователя" class="navbaricons">
                           {{ request.user.username }}
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{% url 'profile' %}"><img src="{% static 'main/img/user-account_icon.png' %}" alt="Иконка аккаунта пользователя" class="navbaricons">Мой аккаунт</a></li>
+                          <li><a class="dropdown-item" href="#"><img src="{% static 'main/img/user-account_icon.png' %}" alt="Иконка аккаунта пользователя" class="navbaricons">Мой аккаунт</a></li>
                           <li><a class="dropdown-item" href="{% url 'logout' %}"><img src="{% static 'main/img/user-logout.png' %}" alt="Иконка выхода" class="navbaricons">Выход</a></li>
                         </ul>
                       </div>
@@ -114,7 +148,7 @@
                         <span class="content-to-hide">Регистрация</span></a>      
                       </div>
                     {% endif %}
-                  </div>
+                  </div> -->
         <br>
         <br>
         <br>

@@ -113,6 +113,13 @@
   flex-wrap: wrap;
 }
 
+.content_center_left {
+  display: flex;
+  align-items: left;
+  flex-wrap: wrap;
+  vertical-align: middle;
+}
+
 .content_justify {
   display: flex;
   justify-content: space-between;
