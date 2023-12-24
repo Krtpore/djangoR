@@ -27,24 +27,26 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
         <div class="container-fluid">
             <div class="card-body">
                 <h3><em> {{ article.title }} </em> </h3>
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            {% for image in article.image_set.all %}
-                            <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
-                                <img class="d-block" src="{{ image.image.url }}"
-                                        style="margin:auto; height:300px; width:auto; border-radius:5px;">
+                    {% if article.image_set.all.0.image.url %}
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                {% for image in article.image_set.all %}
+                                <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}" >
+                                    <img class="d-block" src="{{ image.image.url }}"
+                                            style="margin:auto; height:300px; width:auto; border-radius:5px;">
+                                </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                        </a>
-                    </div>
+                    {% endif %}
                 <p1> <i><strong>Опубликовано</strong></i> {{ article.date }} </p1> <br>
                 <p1> <i><strong>Изменено</strong></i> {{ article.date_change }} </p1> <br>
                 <p1 style="text-align: justify;"> <i><strong>{{ article.anouncement }} </strong></i> </p1> <br>
@@ -55,5 +57,18 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
         </div>
     </div>
 </div>
-{% endblock %}
 
+{% for n in articles %}
+    {% if n.image_set.all %}
+    <li>
+        <a href="{{ n.get_absolute_url }}">
+            {% for image in n.image_set.all %}
+                <img src="{{ n.image.image.url }}" style="margin:auto; height:350px; width:auto;" alt=""
+                    title="{{ n.title }}"/>
+            {% endfor %}
+        </a>
+    </li>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

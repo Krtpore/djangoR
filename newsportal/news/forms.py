@@ -1,8 +1,10 @@
 from django import forms
 from django.core.validators import MinLengthValidator
 
-from django.forms import ModelForm, Textarea, CheckboxSelectMultiple
-from .models import Article
+from django.forms import inlineformset_factory
+
+from django.forms import ModelForm, Textarea, CheckboxSelectMultiple, Select
+from .models import *
 
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
@@ -19,6 +21,26 @@ class MultipleFileField(forms.FileField):
         else:
             result = single_file_clean(data, initial)
         return result
+
+
+ImagesFormSet = inlineformset_factory(Article, Image, fields=("image",),extra=1,max_num=4,
+    widgets={
+        "image_field": MultipleFileField(),
+    })
+
+class ArticleForm(ModelForm):
+    image_field = MultipleFileField()
+
+    class Meta:
+        model = Article
+        fields = ['title','anouncement','text','tags','author']
+        widgets = {
+            'anouncement': Textarea(attrs={'cols':80,'rows':2}),
+            'text': Textarea(attrs={'cols': 80, 'rows': 2}),
+            'tags': CheckboxSelectMultiple(),
+            'author': Select()
+        }
+
 
 class ArticleForm(ModelForm):
     image_field = MultipleFileField()

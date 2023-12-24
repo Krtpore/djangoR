@@ -3,12 +3,8 @@
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
 
-<head>
-    <title>{% block title %} Добавление новости {% endblock %}</title>
-</head>
-<body>
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
-</body>
+{% block title %} Добавление новости {% endblock %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
 {% block body %} 
 <div class="row">
@@ -17,9 +13,9 @@
   <form method="post" class="contact_form" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form | crispy }}
+    {{ image_form|crispy }}
     <input type="submit" class="btn btn-success" value = "Опубликовать">
   </form>
   </div>
 </div>
-
 {% endblock %}
