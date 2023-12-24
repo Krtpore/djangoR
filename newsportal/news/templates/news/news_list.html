@@ -82,20 +82,23 @@
     </div>
 
     {% for article in articles %}
-    <div class="card" style="background-color:#f5f5f5">
-        <div class="container-fluid" style="border:1px solid #cecece;">
-            <div class="card-body">
-                <h3> {{ article.title }}  </h3>
-                <p1>Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</p>
-                <p1> Опубликовано {{ article.date }} </p1> <br>
-                <p1> Изменено {{ article.date_change }} </p1> <br>
-                <p1> {{ article.anouncement }} </p1> <br>
-                <a href="{% url 'news_detail' article.pk %}">Читать новость</a>
+    <div class="card border-light rounded-8 mb-3" style="max-width: 100rem; background-color: #f8f9fa; border-color: gray-300">
+        <div class="row g-0">
+            <div class="col-md-4 content">
+                <img src="{{ article.image_set.all.0.image.url }}" class="img-fluid rounded-start" alt="Картинка к новости">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="{{ article.title }}">{{ article.title }} </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ article.anouncement }}</h2>
+                    <p class="card-text"><a href="{% url 'news_detail' article.pk %}">Читать новость</a></p>
+                    <p class="card-text"><small class="text-muted">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</small></p>
+                    <p class="card-text"><small class="text-muted">Опубликовано: {{ article.date }}   Изменено: {{ article.date_change }}</small></p>
+                </div>
             </div>
         </div>
     </div>
     {% endfor %}
-    <!-- {% for article in object_list %} <p> дял использщвоания класса viewslist вмсесто функции</p>--> 
-    <!-- {% endfor %} -->
+
 {% endblock %}
 

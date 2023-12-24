@@ -1,1 +1,4 @@
 venv/
+dj_makemigrations.bat
+dj_migrate.bat
+dj_runserver.bat
