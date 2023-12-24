@@ -56,36 +56,36 @@
       </div>
     <div class="row">
             <div class="col-12">
-                    <div class="text-left mb-3">
-                        <a href="{% url 'main' %}" class="btn btn-light" role="button">
-                        <img src="{% static 'main/img/icon-home.png' %}" alt="Иконка домашней страницы" class="navbaricons"> 
-                        <span class="content-to-hide">Домашняя страница</span></a>
-                    </div>
-                    <div class="text-left mb-3">
-                        <a href="{% url 'news' %}"  class="btn btn-light" role="button">
-                        <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" class="navbaricons">
-                        <span class="content-to-hide">Все новости</span></a> 
-                    </div>
-                    <div class="text-left mb-3">
-                        <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
-                        <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
-                        <span class="content-to-hide">Предложить новость</span></a>
-                    </div>
-                    <div class="text-left mb-3">
-                        <a href="{% url 'user' %}" class="btn btn-light" role="button">
-                        <img src="{% static 'main/img/avatar.png' %}" alt="Иконка пользователя" class="navbaricons">
-                        <span class="content-to-hide perenos">Мой кабинет</span></a>
-                    </div>
-                    <div class="text-left mb-3">
-                        <a href="{% url 'about' %}" class="btn btn-light" role="button">
-                            <img src="{% static 'main/img/icon-about-us.png' %}" alt="Иконка просмотра новостей" class="navbaricons"> 
-                            <span class="content-to-hide">О нас</span></a>
-                    </div>
-                    <div class="text-left mb-3">
-                        <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
-                            <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка письма" class="navbaricons">
-                            <span class="content-to-hide">Написать нам</span></a>
-                    </div>
+                  <div class="text-left mb-3">
+                      <a href="{% url 'main' %}" class="btn btn-light" role="button">
+                      <img src="{% static 'main/img/icon-home.png' %}" alt="Иконка домашней страницы" class="navbaricons"> 
+                      <span class="content-to-hide">Домашняя страница</span></a>
+                  </div>
+                  <div class="text-left mb-3">
+                      <a href="{% url 'news' %}"  class="btn btn-light" role="button">
+                      <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" class="navbaricons">
+                      <span class="content-to-hide">Все новости</span></a> 
+                  </div>
+                  <div class="text-left mb-3">
+                      <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
+                      <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
+                      <span class="content-to-hide">Предложить новость</span></a>
+                  </div>
+                  <div class="text-left mb-3">
+                      <a href="{% url 'about' %}" class="btn btn-light" role="button">
+                          <img src="{% static 'main/img/icon-about-us.png' %}" alt="Иконка просмотра новостей" class="navbaricons"> 
+                          <span class="content-to-hide">О нас</span></a>
+                  </div>
+                  <div class="text-left mb-3">
+                      <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
+                          <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка письма" class="navbaricons">
+                          <span class="content-to-hide">Написать нам</span></a>
+                  </div>
+                  <div class="text-left mb-3">
+                    <a href="{% url 'user' %}" class="btn btn-light" role="button">
+                    <img src="{% static 'main/img/avatar.png' %}" alt="Иконка пользователя" class="navbaricons">
+                    <span class="content-to-hide perenos">Мой кабинет</span></a>
+                </div>
         <div class="row">
             <div class="grid gap-0 column-gap-3">
             <div class="input-group rounded">
@@ -97,19 +97,47 @@
             </div>
         </div>
     </div>
+
+    {% if request.user.id %}  <!-- проверяем аутентификацию-->
+      <div class="dropdown flex-column mb-auto" >
+        <button class="btn btn-primary dropdown-toggle col-12" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background:#212529;">
+          <img src="{{ request.user.account.account_image.url }}" alt="" width="25" height="25" class="rounded-circle me-2">
+            <div class="d-none d-lg-block "> {{ request.user.username }} </div>
+        </button>
+        <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#"> Мой аккаунт</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="{% url 'logout' %}"> Выход</a></li>
+        </ul>
+      </div> <!-- выпадающее меню-->
+    {% else %} <!-- ссылки на регистрацию и аутентификацию-->
+      <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="{% url 'registration' %}" {% if request.resolver_match.view_name  == 'registration' %} class="link-active" aria-current="page" {% endif %}>
+                    <i class="fa fa-user menu-icon"></i>
+                    <div class="d-none d-lg-block">Регистрация</div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'login' %}" {% if request.resolver_match.view_name  == 'login' %}
+                class="link-active" aria-current="page" {% endif %}>
+                    <i class="fa fa-sign menu-icon {% if request.path  == '/users/login' %}
+                    link-active {% endif %}" ></i>
+                    <div class="d-none d-lg-block">Вход</div>
+                </a>
+            </li>
+      </ul>
+    {% endif %}
+
+    <br >
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                  {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
 </div>
 
-
-    <!-- <div class="row"> -->
-        <!-- <div class="paddings10"> -->
-            <!-- <div class="row" align="right"> -->
-                <!-- <div class="search"> -->
-                    <!-- <label for="search_news"></label> -->
-                    <!-- <input id="search_news" placeholder="Искать новости" style="text-align: center; vertical-align: middle;"> -->
-                    <!-- <button class="btn btn-primary"> -->
-                        <!-- <i class="fas fa-search"></i> -->
-                    <!-- </button> -->
-                <!-- </div> -->
-            <!-- </div> -->
-        <!-- </div> -->
-    <!-- </div> -->

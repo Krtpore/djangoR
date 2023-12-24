@@ -3,17 +3,17 @@
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
 
-{% block title %}contact page{% endblock %}
+{% block title %}Регистрация пользователя{% endblock %}
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
 {% block body %} 
 <div class="row">
   <div class="text-center" style="margin-top:30px;">
-      <h1 >Страница обратной связи</h1>
+      <h1 >Регистрация пользователя</h1>
   <form method="post" class="contact_form">
     {% csrf_token %}
     {{ form | crispy }}
-    <input type="submit" class="btn btn-success" value = "Отправить">
+    <input type="submit" class="btn btn-success" value = "Сохранить">
   </form>
   </div>
 </div>

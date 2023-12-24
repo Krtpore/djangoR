@@ -4,5 +4,7 @@
 
 JustUser / qqaazzwwssxx
 user_reader_1 / edcrfvtgb111
+Omonad / 8a7usxchnkau67y12
+Testuser22 / arznjWbFz4Bt
 
 переключил на внешний postgres, стало медленнее + надо ждать подъем инстанса БД из спячки после первого запуска
