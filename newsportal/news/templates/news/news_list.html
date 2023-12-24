@@ -84,16 +84,16 @@
     {% for article in articles %}
     <div class="card border-light rounded-8 mb-3" style="max-width: 100rem; background-color: #f8f9fa; border-color: gray-300">
         <div class="row g-0">
-            <div class="col-md-4 content">
+            <div class="col-md-4 content_center">
                 <img src="{{ article.image_set.all.0.image.url }}" class="img-fluid rounded-start" alt="Картинка к новости">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="{{ article.title }}">{{ article.title }} </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ article.anouncement }}</h2>
+                    <h6 class="card-subtitle mb-2 content_justify lh-sm" style="text-align: justify;">{{ article.anouncement }}</h2>
                     <p class="card-text"><a href="{% url 'news_detail' article.pk %}">Читать новость</a></p>
-                    <p class="card-text"><small class="text-muted">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</small></p>
                     <p class="card-text"><small class="text-muted">Опубликовано: {{ article.date }}   Изменено: {{ article.date_change }}</small></p>
+                    <p class="card-text"><small class="text-muted">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</small></p>
                 </div>
             </div>
         </div>

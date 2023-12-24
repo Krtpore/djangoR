@@ -107,11 +107,20 @@
   filter: invert(1);
 }
 
-.content {
+.content_center {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
+
+.content_justify {
+  display: flex;
+  justify-content: space-between;
+  white-space: pre-wrap;
+  flex-wrap: wrap;
+}
+
+
 
 @media (max-width: 1200px) {                  
   .content-to-hide {
