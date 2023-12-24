@@ -66,11 +66,19 @@
                       <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" class="navbaricons">
                       <span class="content-to-hide">Все новости</span></a> 
                   </div>
-                  <div class="text-left mb-3">
-                      <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
-                      <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
+                  {% if request.user.id %}
+                    <div class="text-left mb-3">
+                        <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
+                        <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
+                        <span class="content-to-hide">Предложить новость</span></a>
+                    </div>
+                  {% else %}
+                    <div class="text-left mb-3">
+                      <a href="{% url 'login' %}" class="btn btn-light disabled" role="button">
+                      <img src="{% static 'main/img/login_picture.png' %}" alt="Иконка создания новости" class="navbaricons">
                       <span class="content-to-hide">Предложить новость</span></a>
-                  </div>
+                    </div>
+                  {% endif %}
                   <div class="text-left mb-3">
                       <a href="{% url 'about' %}" class="btn btn-light" role="button">
                           <img src="{% static 'main/img/icon-about-us.png' %}" alt="Иконка просмотра новостей" class="navbaricons"> 
