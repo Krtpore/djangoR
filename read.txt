@@ -1,10 +1,11 @@
 
-админка: admin / admin
+админка: admin / admin   nLqyye8kPFw793G
 
 
 JustUser / qqaazzwwssxx
 user_reader_1 / edcrfvtgb111
 Omonad / 8a7usxchnkau67y12
 Testuser22 / arznjWbFz4Bt
-
+Testuser2222 / 8eMAphDKRNnY2fh
+naturelover567 / GreenEarth19!
 переключил на внешний postgres, стало медленнее + надо ждать подъем инстанса БД из спячки после первого запуска

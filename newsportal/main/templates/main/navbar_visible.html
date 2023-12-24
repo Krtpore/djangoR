@@ -81,11 +81,54 @@
                           <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка письма" class="navbaricons">
                           <span class="content-to-hide">Написать нам</span></a>
                   </div>
-                  <div class="text-left mb-3">
+                  <!-- <div class="text-left mb-3">
                     <a href="{% url 'user' %}" class="btn btn-light" role="button">
                     <img src="{% static 'main/img/avatar.png' %}" alt="Иконка пользователя" class="navbaricons">
                     <span class="content-to-hide perenos">Мой кабинет</span></a>
-                </div>
+                  </div> -->
+
+                  
+                  <div class="text-left mb-3">
+                    {% if request.user.id %}  <!-- проверяем аутентификацию-->
+                      <div class="dropdown text-left mb-3">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="{{ request.user.account.account_image.url }}" alt="Иконка пользователя" class="navbaricons">
+                          {{ request.user.username }}
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#"><img src="{% static 'main/img/user-account_icon.png' %}" alt="Иконка аккаунта пользователя" class="navbaricons">Мой аккаунт</a></li>
+                          <li><a class="dropdown-item" href="{% url 'logout' %}"><img src="{% static 'main/img/user-logout.png' %}" alt="Иконка выхода" class="navbaricons">Выход</a></li>
+                        </ul>
+                      </div>
+                    {% else %}
+                      <div class="text-left mb-3">
+                        <a href="{% url 'login' %}" class="btn btn-light" role="button">
+                        <img src="{% static 'main/img/login_picture.png' %}" alt="Иконка входа" class="navbaricons">
+                        <span class="content-to-hide">Вход</span></a>
+                      </div>
+                      <div class="text-left mb-3"> 
+                        <a href="{% url 'registration' %}" class="btn btn-light" role="button">
+                        <img src="{% static 'main/img/circle-pad-finger.png' %}" alt="Иконка регистрации" class="navbaricons">
+                        <span class="content-to-hide">Регистрация</span></a>      
+                      </div>
+                    {% endif %}
+                  </div>
+                                   
+
+
+
+
+
+
+
+
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <div class="row">
             <div class="grid gap-0 column-gap-3">
             <div class="input-group rounded">
@@ -98,36 +141,7 @@
         </div>
     </div>
 
-    {% if request.user.id %}  <!-- проверяем аутентификацию-->
-      <div class="dropdown flex-column mb-auto" >
-        <button class="btn btn-primary dropdown-toggle col-12" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background:#212529;">
-          <img src="{{ request.user.account.account_image.url }}" alt="" width="25" height="25" class="rounded-circle me-2">
-            <div class="d-none d-lg-block "> {{ request.user.username }} </div>
-        </button>
-        <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#"> Мой аккаунт</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="{% url 'logout' %}"> Выход</a></li>
-        </ul>
-      </div> <!-- выпадающее меню-->
-    {% else %} <!-- ссылки на регистрацию и аутентификацию-->
-      <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="{% url 'registration' %}" {% if request.resolver_match.view_name  == 'registration' %} class="link-active" aria-current="page" {% endif %}>
-                    <i class="fa fa-user menu-icon"></i>
-                    <div class="d-none d-lg-block">Регистрация</div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'login' %}" {% if request.resolver_match.view_name  == 'login' %}
-                class="link-active" aria-current="page" {% endif %}>
-                    <i class="fa fa-sign menu-icon {% if request.path  == '/users/login' %}
-                    link-active {% endif %}" ></i>
-                    <div class="d-none d-lg-block">Вход</div>
-                </a>
-            </li>
-      </ul>
-    {% endif %}
+    
 
     <br >
     {% if messages %}
