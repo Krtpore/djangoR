@@ -1,10 +1,10 @@
-{% extends 'main/base.html' %}
+{% extends 'main/base_template.html' %}
 {% load static %}
 {% load bootstrap5 %}
-{% block title %} Мои статьи {% endblock %}
+{% block title %} Избранное {% endblock %}
 {% block sidebar %} {% include 'users/user_panel.html' %} {% endblock %}
 
-{% block body %}
+{% block content %}
 
 <div class="content_center">
     {% if articles|length  != 0 %}
