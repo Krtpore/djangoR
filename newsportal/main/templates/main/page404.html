@@ -1,19 +1,22 @@
 {% extends 'main/base.html' %}
-<head>
-    <title>{% block title %}page404 example{% endblock %}</title>
-</head>
-<body>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
-</body>
-
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+{% block title %}page404 example{% endblock %}
 {% block body %} 
-    <h1> Page404 template</h1>  <br>  <br>
-    <h3> Кажется что-то сломалось или здесь этого нет</h3>
-    <h3> но мы работаетм над этим.... наверное </h3>
-    <h3> Может домой??? Это сюда: <a href="{% url 'main' %}">Домашняя страница</a> </h3> <br>
-    
-    <img src="{% static 'main/img/page404.png' %}" alt="Упс, что-то пошло не так" style="width:auto;height:400px">
-    
+    <div class="row wraptocenter">
+        <h1> Page404 </h1>
+    </div>
+    <hr>
+    <div class="row content-center">
+        <img src="{% static 'main/img/page404.png' %}" class="content-center" alt="Упс, что-то пошло не так" style="width:auto;height:400px">
+    </div>
+    <h4> Кажется что-то сломалось или здесь этого нет</h4>
+    <h4> но мы работаем над этим.... </h4>
+    <h4> Нажмите на успокаивающий зеленый   > > > <a href="{% url 'main' %}" class="btn" role="button">
+        <img src="{% static 'main/img/panic_button.jpg' %}" style="width:auto;height:150px" alt="panic button"> 
+        </a></h3>
 
 {% endblock %}
