@@ -36,7 +36,15 @@ class FavoriteArticle(models.Model):
     article = models.ForeignKey(Article,on_delete=models.SET_NULL,null=True)
     create_at=models.DateTimeField(auto_now_add=True)
 
+class ContactForm(models.Model):
+    name = models.CharField(verbose_name='Имя пользователя',max_length=30, null=False)
+    email = models.EmailField(verbose_name='Email',max_length=30, null=False)
+    message = models.CharField(verbose_name='Сообщение', max_length=500, null=False)
 
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Страница обратной связи'
+        verbose_name_plural = 'Страница обратной связи'
 
 
 # class Image(models.Model):

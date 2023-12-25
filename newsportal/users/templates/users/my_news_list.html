@@ -97,8 +97,14 @@
                 </div>
             {% elif request.user|has_group:"Admins" %}
             {% else %}
-                <h4> К сожалению вы пока не можете создавать новости</h4>
-                <h5> Но это всегда можно исправить</h5>
+                <h4> К сожалению вы пока что не можете создавать новости.</h4>
+                <h5> Но это не сложно исправить!</h5>
+                <h5> Отправьте нам сообщение через форму обратной связи:</h5>
+                <div class="text-left mb-3">
+                    <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
+                        <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка письма" class="navbaricons">
+                        <span class="content-to-hide">Отправить сообщение</span></a>
+                </div>
             {% endif %}
         </div>
     </div>

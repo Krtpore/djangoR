@@ -33,6 +33,13 @@ class FavoriteArticleAdmin(admin.ModelAdmin):
     list_display = ['article','user','create_at']
 admin.site.register(FavoriteArticle, FavoriteArticleAdmin)
 
+@admin.register(ContactForm)
+class ContactFormAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'message']
+    list_filter = ['name', 'email', 'message']
+    list_display_links = ['name']
+    readonly_fields = ['name', 'email']
+
 # мое
 # @admin.register(Image)
 # class ImageAdmin(admin.ModelAdmin):
