@@ -11,11 +11,11 @@ from .forms import AccountUpdateForm, UserUpdateForm
 
 from .models import *
 from .forms import *
+from .utils import *
 
 def profile(request):
     context = dict()
     return render(request,'users/profile.html',context)
-
 
 def profile_update(request):
     user = request.user
@@ -28,6 +28,8 @@ def profile_update(request):
             account_form.save()
             messages.success(request,"Профиль успешно обновлен")
             return redirect('profile')
+        else:
+            pass
     else:
         context = {'account_form':AccountUpdateForm(instance=account),
                    'user_form':UserUpdateForm(instance=user)}
@@ -46,17 +48,22 @@ def password_update(request):
     context = {"form": form}
     return render(request,'users/edit_password.html',context)
 
-
 def registration(request):
     if request.method=='POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save() #появляется новый пользователь
-            group = Group.objects.get(name='Authors')
-            user.groups.add(group)
+            category = request.POST['account_type']
+            if category == 'author':
+                group = Group.objects.get(name='Pending Users')
+                user.groups.add(group)
+            else:
+                group = Group.objects.get(name='Reader')
+                user.groups.add(group)
 
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
+            account = Account.objects.create(user=user,nickname=user.username)
 
             #!!!не аутентифицируется - нужно доделать
             authenticate(username=username,password=password)
@@ -67,31 +74,7 @@ def registration(request):
     context = {'form':form}
     return render(request, 'users/registration.html', context) 
 
-    # if request.method=='POST':
-    #     form = UserCreationForm(request.POST)
-    #     if form.is_valid():
-    #         user = form.save() #появляется новый пользователь
-    #         category = request.POST['account_type']
-    #         if category == 'author':
-    #             group = Group.objects.get(name='Actions Required')
-    #             user.groups.add(group)
-    #         else:
-    #             group = Group.objects.get(name='Reader')
-    #             user.groups.add(group)
-    #         username = form.cleaned_data.get('username')
-    #         password = form.cleaned_data.get('password1')
-    #         account = Account.objects.create(user=user,nickname=user.username)
-    #         user = authenticate(username=username,password=password)
-    #         login(request,user)
-    #         messages.success(request,f'{username} был зарегистрирован!')
-
-    #         return redirect('home')
-    # else:
-    #     form = UserCreationForm()
-    # context = {'form':form}
-    # return render(request,'users/registration.html',context)
-
-
+@check_group('Authors')
 def contact_page(request):
     if request.method == "POST":
         form = ContactForm(request.POST)

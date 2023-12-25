@@ -94,6 +94,7 @@
                     <p class="card-text"><a href="{% url 'news_detail' article.pk %}">Читать новость</a></p>
                     <p class="card-text"><small class="text-muted">Опубликовано: {{ article.date }}   Изменено: {{ article.date_change }}</small></p>
                     <p class="card-text"><small class="text-muted">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</small></p>
+                    <p class="card-text"><small class="text-muted">Просмотров: {{ article.get_views }} </small></p>
                 </div>
             </div>
         </div>

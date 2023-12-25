@@ -5,7 +5,11 @@ from .models import *
 from django.db import connection, reset_queries
 from django.views.generic import DetailView, DeleteView, UpdateView, ListView
 from django.contrib.auth.decorators import login_required
+
 from django.conf import settings
+from users.utils import check_group
+
+from .utils import ViewCountMixin
 
 from .forms import *
 #человек не аутентифицирован - отправляем на страницу другую
@@ -24,7 +28,7 @@ class ArticleDetailView(DetailView):
         context['images'] = images
         return context
 
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(ViewCountMixin, UpdateView):
     model = Article
     template_name = 'news/create_article.html'
     fields = ['title','anouncement','text','tags']
@@ -79,6 +83,7 @@ class ArticleListView(ListView):
     template_name = 'news/news_list.html'
 
 @login_required(login_url=settings.LOGIN_URL)
+@check_group('Authors')
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES)
