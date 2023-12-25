@@ -7,13 +7,13 @@
 <!-- <link rel="stylesheet" href="{% static 'main/css/style.css' %}" /> -->
 {% block title %} Все новости {% endblock %}
       
-    <!-- jQuery !-->
+<!-- jQuery !-->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script> -->
 <!-- jQuery UI !-->
 <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script> -->
 
-<script>
+<!-- <script>
     $(function() {
       $("#search_news").autocomplete({
         source: "search_news_auto/",
@@ -27,22 +27,9 @@
     {
       var selectedObj = ui.item;
     }
-</script>
-    <!-- <div class="row"> -->
-        <!-- <div class="paddings10"> -->
-            <!-- <div class="row" align="right"> -->
-                <!-- <div class="search"> -->
-                    <!-- <label for="search_news"></label> -->
-                    <!-- <input id="search_news" placeholder="Искать новости" style="text-align: center; vertical-align: middle;"> -->
-                    <!-- <button class="btn btn-primary"> -->
-                        <!-- <i class="fas fa-search"></i> -->
-                    <!-- </button> -->
-                <!-- </div> -->
-            <!-- </div> -->
-        <!-- </div> -->
-    <!-- </div> -->
+</script> -->
 {% block body %}
-    <div class="row margins5" align="center">
+    <div class="row" align="center">
         <!-- <label><h1> Фильтры: (Всего :{{ total }} результатов) </h1> -->
             <form method="post">
                 {% csrf_token %}
@@ -54,8 +41,8 @@
                                     <img src="{% static 'main/img/icon-filter.png' %}" alt="Иконка фильтра" style="width:auto;height:35px">
                                 </div>
                                 <div class="col-6">
-                                    {% if all_articles_len != articles|length %} 
-                                    <p3 style="text-align: center; vertical-align: middle;"> {{ articles|length }} </p3> 
+                                    {% if all_articles_len != total %} 
+                                    <p3 style="text-align: center; vertical-align: middle;"> {{ total }} </p3> 
                                     {% endif %}
                                 </div>
                             </div>
@@ -63,15 +50,15 @@
                     <select class="form-select col" name="author_filter" style="width:100%">
                         <option value="0">Все авторы</option>
                         {% for author in author_list %}
-                        <option value="{{ author.id }}" {% if selected_author == author.id %} selected {% endif %}> {{ author.username }}
-                        </option>
+                            <option value="{{ author.id }}" {% if selected_author == author.id %} selected {% endif %}> {{ author.username }}
+                            </option>
                         {% endfor %}
                     </select>
                     <select class="form-select col" name="category_filter" style="width:100%">
                         <option value="0">Все категории</option>
                         {% for c in categories %}
-                        <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }}
-                        </option>
+                            <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }}
+                            </option>
                         {% endfor %}
                     </select>
                     <input type="submit" class="btn btn-success col-2" value="Применить">
@@ -81,35 +68,28 @@
         <!-- </label> -->
     </div>
     <br>
-    <nav aria-label="Пример навигации по страницам">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="?page={{ articles.previous_page_number }}">Предыдущая</a></li>
-            {% for p in articles.paginator.page_range %}
-                <li class="page-item"><a class="page-link" href="?page={{ p }}"> {{ p }}</a></li>
-            {% endfor %}
-            <li class="page-item"><a class="page-link" href="?page={{ articles.next_page_number }}">Следующая</a></li>
-        </ul>
-    </nav>
-    
-    <div class="row">
-        <nav aria-label="Пагинация">
-            <ul class="pagination">
-                <!-- {% if articles.has_previous %} -->
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <!-- {% endif %}
-                {% for p in articles.paginator.page_range %} -->
-                    <!-- {% if articles.number == p %}
-                        <li class="page-item"><p class="page-link" style="color:black;"> {{ p }}</p></li>
-                    {% else %}
-                        <li class="page-item"><a class="page-link" href="#"> {{ p }}</a></li>
-                    {% endif %} -->
-                <!-- {% endfor %}
-                {% if articles.has_next %} -->
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                <!-- {% endif %} -->
-            </ul>
-        </nav>
-    </div>
+<!-- 
+    {% if total > 1 %} -->
+        <div class="row">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    {% if articles.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ articles.previous_page_number }}">Предыдущая</a></li>
+                    {% endif %}
+                    {% for p in articles.paginator.page_range %}
+                        {% if articles.number == p %}
+                            <li class="page-item"><p class="page-link" style="color:black;"> {{ p }}</p></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ p }}"> {{ p }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if articles.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ articles.next_page_number }}">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    <!-- {% endif %} -->
     {% for article in articles %}
     <div class="card border-light rounded-8 mb-3" style="max-width: 100rem; background-color: #f8f9fa; border-color: gray-300">
         <div class="row g-0">
@@ -119,12 +99,12 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="{{ article.title }}">{{ article.title }} </h5>
-                    <h6 class="card-subtitle mb-2 content_justify lh-sm" style="text-align: justify;">{{ article.anouncement }}</h2>
+                    <h6 class="card-subtitle mb-2 content_justify lh-sm" style="text-align: justify;">{{ article.anouncement }}</h6>
                     <p class="card-text"><a href="{% url 'news_detail' article.pk %}">Читать новость</a></p>
                     <p class="card-text"><small class="text-muted">Опубликовано: {{ article.date }}   Изменено: {{ article.date_change }}</small></p>
                     <p class="card-text"><small class="text-muted">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</small></p>
                     <p class="card-text"><small class="text-muted">Просмотров: {{ article.get_views }} </small></p>
-                    <a class="btn btn-outline-success" href="{% url 'favorites' article.pk %}"><img src="{% static 'main/img/icon-my-favorite.png' %}" alt="В избранное" class="navbaricons"> В избранное</i></a>
+                    <a class="btn btn-outline-success" href="{% url 'favorites' article.pk %}"><img src="{% static 'main/img/icon-my-favorite.png' %}" alt="В избранное" class="navbaricons"> В избранное</a>
                 </div>
             </div>
         </div>

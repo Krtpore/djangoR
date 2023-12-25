@@ -18,15 +18,6 @@ from .forms import *
 
 import json
 
-def pagination(request):
-    articles = Article.objects.all()
-    p = Paginator(articles, 3)
-    page_number = request.GET.get('page')
-    page_obj = p.get_page(page_number)
-    print(page_obj)
-    context = {'articles': page_obj}
-    return render(request,'news/news_list.html',context)
-
 class ArticleDetailView(DetailView):
     model = Article
     template_name = 'news/news_detail.html'
@@ -144,11 +135,27 @@ def news(request):
         selected_author = 0
         selected_category = 0
         articles = Article.objects.all()
-
-    context = {'articles': articles, 'author_list':author_list, 'selected_author':selected_author,
-               'categories':categories,'selected_category': selected_category, 'all_articles_len': all_articles_len}
+    
+    total = len(articles)
+    
+    p = Paginator(articles,3)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    context = {'articles': page_obj, 'author_list':author_list, 'selected_author':selected_author,
+               'categories':categories,'selected_category': selected_category, 'all_articles_len': all_articles_len, 'total':total,}
     
     return render(request,'news/news_list.html',context)
+
+#  старая пагинация
+# def pagination(request):
+#     articles = Article.objects.all()
+#     p = Paginator(articles, 3)
+#     page_number = request.GET.get('page')
+#     page_obj = p.get_page(page_number)
+#     print(page_obj)
+#     context = {'articles': page_obj}
+#     return render(request,'news/news_list.html',context)
+
 
 def news_search(request):
     author_list = User.objects.all()

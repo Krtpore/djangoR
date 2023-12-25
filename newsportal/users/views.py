@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 from news.models import Article
 
 from .forms import AccountUpdateForm, UserUpdateForm
+from django.core.paginator import Paginator
+
+# from django.core.mail import send_mail  - рассылк почты
 
 from .models import *
 from .forms import *
@@ -79,9 +82,9 @@ def registration(request):
             password = form.cleaned_data.get('password1')
             account = Account.objects.create(user=user,nickname=user.username)
 
-            #!!!не аутентифицируется - нужно доделать
             authenticate(username=username,password=password)
             messages.success(request,f'{username} был зарегистрирован!')
+            login(request,user)
             return redirect('main')
     else:
         form = UserCreationForm()
@@ -109,4 +112,27 @@ def index(request):
     print(user_acc)
     return HttpResponse('Приложениt Users')
 
+def my_news_list(request):
+    categories = Article.categories #создали перечень категорий
+    author = User.objects.get(id=request.user.id) #создали перечень авторов
+    articles = Article.objects.filter(author = author)
+    if request.method == "POST":
+        selected_category = int(request.POST.get('category_filter'))
+        if selected_category != 0: #фильтруем найденные результаты по категориям
+            articles = articles.filter(category__icontains=categories[selected_category-1][0])
+    else: #если страница открывется впервые
+        selected_category = 0
+        # articles = Article.objects.all()
 
+    total = len(articles)
+
+    p = Paginator(articles,3)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    context = {'articles': page_obj, 'total':total,
+               'categories':categories,'selected_category': selected_category}
+
+    return render(request,'users/my_news_list.html',context)
+
+def my_favorites(request):
+    pass

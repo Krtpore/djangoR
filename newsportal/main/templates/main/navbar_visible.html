@@ -7,7 +7,7 @@
 
 {% load users_extras %}
 
-
+{% block body%}
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
 <script src="https://kit.fontawesome.com/a97047fead.js" crossorigin="anonymous"></script>
@@ -43,96 +43,83 @@
 <div class="navbar">
     <div class="row">
         <div class="col-4 content_center">
-          <div>
-            <img alt="Иконка меню" class="img-fluid" src="{% static 'main/img/site-logo.png' %}" style="max-width:60px;max-height:60px"/>
-          </div>
+            <div>
+              <img alt="Иконка меню" class="img-fluid" src="{% static 'main/img/site-logo.png' %}" style="max-width:60px;max-height:60px"/>
+            </div>
         </div>
         <div class="col-8 content_center">
-          <div>
-            <h4 class="content-to-hide">Меню сайта</h4>
-          </div>
+            <div>
+              <h4 class="content-to-hide">Меню сайта</h4>
+            </div>
         </div>
-      </div>
+    </div>
     <div class="row">
-            <div class="col-12">
-            <hr>                  
-                  <div class="text-left mb-3">
-                      <a href="{% url 'main' %}" class="btn btn-light" role="button">
-                      <img src="{% static 'main/img/icon-home.png' %}" alt="Иконка домашней страницы" class="navbaricons"> 
-                      <span class="content-to-hide">Домашняя страница</span></a>
-                  </div>
-                  <div class="text-left mb-3">
-                      <a href="{% url 'news' %}"  class="btn btn-light" role="button">
-                      <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" class="navbaricons">
-                      <span class="content-to-hide">Все новости</span></a> 
-                  </div>
-                  <!-- Был редирект на страницу логина, но переделал кнопку в disabled -->
-                  {% if request.user.id %}
-                    <div class="text-left mb-3">
-                        <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
-                        <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
-                        <span class="content-to-hide">Предложить новость</span></a>
-                    </div>
-                  {% else %}
-                    <div class="text-left mb-3">
-                      <a href="{% url 'login' %}" class="btn btn-light disabled" role="button" disabled>
-                      <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
-                      <span class="content-to-hide">Предложить новость</span></a>
-                    </div>
-                  {% endif %}
-                  <div class="text-left mb-3">
-                      <a href="{% url 'about' %}" class="btn btn-light" role="button">
-                          <img src="{% static 'main/img/icon-about-us.png' %}" alt="Иконка просмотра новостей" class="navbaricons"> 
-                          <span class="content-to-hide">О нас</span></a>
-                  </div>
-                  <div class="text-left mb-3">
-                      <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
-                          <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка письма" class="navbaricons">
-                          <span class="content-to-hide">Написать нам</span></a>
-                  </div>
-                  <hr>
-                  <div class="text-left mb-3">
-                    {% if request.user.id %}  <!-- проверяем аутентификацию-->
-                      <div class="dropdown text-left mb-3">
-                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          {% if request.user.account.account_image.url %}
-                            <img src="{{ request.user.account.account_image.url }}" alt="userpic" class="navbaricons">
-                          {% else %}  
-                            <img src="{% static 'main/img/no-camera.png' %}" alt="userpic" class="navbaricons">
-                          {% endif %}
-                          {{ request.user.username }}
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{% url 'profile' %}"><img src="{% static 'main/img/user-account_icon.png' %}" alt="Иконка аккаунта пользователя" class="navbaricons">Мой аккаунт</a></li>
-                          <li><a class="dropdown-item" href="{% url 'logout' %}"><img src="{% static 'main/img/user-logout.png' %}" alt="Иконка выхода" class="navbaricons">Выход</a></li>
-                        </ul>
-                      </div>
-                    {% else %}
-                      <div class="text-left mb-3">
-                        <a href="{% url 'login' %}" class="btn btn-light" role="button">
-                        <img src="{% static 'main/img/login_picture.png' %}" alt="Иконка входа" class="navbaricons">
-                        <span class="content-to-hide">Вход</span></a>
-                      </div>
-                      <div class="text-left mb-3"> 
-                        <a href="{% url 'registration' %}" class="btn btn-light" role="button">
-                        <img src="{% static 'main/img/circle-pad-finger.png' %}" alt="Иконка регистрации" class="navbaricons">
-                        <span class="content-to-hide">Регистрация</span></a>      
-                      </div>
+        <div class="col-12">
+        <hr>                  
+            <div class="text-left mb-3">
+                <a href="{% url 'main' %}" class="btn btn-light" role="button">
+                <img src="{% static 'main/img/icon-home.png' %}" alt="Иконка домашней страницы" class="navbaricons"> 
+                <span class="content-to-hide">Домашняя страница</span></a>
+            </div>
+            <div class="text-left mb-3">
+                <a href="{% url 'news' %}"  class="btn btn-light" role="button">
+                <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" class="navbaricons">
+                <span class="content-to-hide">Все новости</span></a> 
+            </div>
+            <!-- Был редирект на страницу логина, но переделал кнопку в disabled -->
+            {% if request.user.id %}
+              <div class="text-left mb-3">
+                  <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
+                  <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
+                  <span class="content-to-hide">Предложить новость</span></a>
+              </div>
+            {% else %}
+              <div class="text-left mb-3">
+                <a href="{% url 'login' %}" class="btn btn-light disabled" role="button" disabled>
+                <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
+                <span class="content-to-hide">Предложить новость</span></a>
+              </div>
+            {% endif %}
+            <div class="text-left mb-3">
+                <a href="{% url 'about' %}" class="btn btn-light" role="button">
+                    <img src="{% static 'main/img/icon-about-us.png' %}" alt="Иконка просмотра новостей" class="navbaricons"> 
+                    <span class="content-to-hide">О нас</span></a>
+            </div>
+            <div class="text-left mb-3">
+                <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
+                    <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка письма" class="navbaricons">
+                    <span class="content-to-hide">Написать нам</span></a>
+            </div>
+            <hr>
+            <div class="text-left mb-3">
+              {% if request.user.id %}  <!-- проверяем аутентификацию-->
+                <div class="dropdown text-left mb-3">
+                  <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if request.user.account.account_image.url %}
+                      <img src="{{ request.user.account.account_image.url }}" alt="userpic" class="navbaricons">
+                    {% else %}  
+                      <img src="{% static 'main/img/no-camera.png' %}" alt="userpic" class="navbaricons">
                     {% endif %}
-                    {% if request.user|has_group:"Authors" %}
-                    <div class="text-left mb-3">
-                      <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
-                          <img src="{% static 'main/img/icon-my-articles.png' %}" alt="Мои статьи" class="navbaricons">
-                          <span class="content-to-hide">Мои статьи</span></a>
-                    </div>
-                    {% endif %}
-                    {% if request.user.id %}
-                    <div class="text-left mb-3">
-                      <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
-                          <img src="{% static 'main/img/icon-my-favorite.png' %}" alt=" Избранное" class="navbaricons">
-                          <span class="content-to-hide"> Избранное</span></a>
-                    </div>
-                    {% endif %}
+                    {{ request.user.username }}
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'profile' %}"><img src="{% static 'main/img/user-account_icon.png' %}" alt="Иконка аккаунта пользователя" class="navbaricons">Мой аккаунт</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}"><img src="{% static 'main/img/user-logout.png' %}" alt="Иконка выхода" class="navbaricons">Выход</a></li>
+                  </ul>
+                </div>
+              {% else %}
+                <div class="text-left mb-3">
+                  <a href="{% url 'login' %}" class="btn btn-light" role="button">
+                  <img src="{% static 'main/img/login_picture.png' %}" alt="Иконка входа" class="navbaricons">
+                  <span class="content-to-hide">Вход</span></a>
+                </div>
+                <div class="text-left mb-3"> 
+                  <a href="{% url 'registration' %}" class="btn btn-light" role="button">
+                  <img src="{% static 'main/img/circle-pad-finger.png' %}" alt="Иконка регистрации" class="navbaricons">
+                  <span class="content-to-hide">Регистрация</span></a>      
+                </div>
+              {% endif %}
+        </div>
         <br>
         <br>
         <br>
@@ -141,7 +128,7 @@
             <div class="grid gap-0 column-gap-3">
             <div class="input-group rounded">
                 <input type="search" input id="search_news" class="form-control rounded " placeholder="Искать новости" aria-label="Искать новости" aria-describedby="search_news" />
-                <span class="btn btn-light" id="search_news">
+                <span class="btn btn-light">
                     <i class="fas fa-search"></i>
                 </span>
             </div>
@@ -159,7 +146,7 @@
             </div>
         {% endfor %}
     {% endif %}
-
-
+    </div>
 </div>
 
+{% endblock %}
