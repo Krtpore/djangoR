@@ -4,6 +4,8 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
+{% load users_extras %}
+
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 {% block title %} Чтение новости {% endblock %}
 
@@ -52,9 +54,15 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
                 <p1 style="text-align: justify;"> <i><strong>{{ article.anouncement }} </strong></i> </p1> <br>
                 <p1 class="content_justify lh-sm" style="text-align: justify;"> {{ article.text }} </p1> <br>
             </div> <br>
-        <a class="btn btn-outline-danger" href="{% url 'news_delete' article.pk %}">Удалить новость</a>
-        <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}">Редактировать новость</a>
         <a class="btn btn-outline-success"  href="{% url 'favorites' article.pk %}"><img src="{% static 'main/img/icon-my-favorite.png' %}" alt="В избранное" class="navbaricons justify-content-md-end"> В избранное</a>
+        {% if request.user|has_group:"Admins" %}
+            <a class="btn btn-outline-danger" href="{% url 'news_delete' article.pk %}">Удалить новость</a>
+            <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}">Редактировать новость</a>
+        {% endif %} 
+        {% if request.user|has_group:"Authors" %}
+            <a class="btn btn-outline-danger" href="{% url 'news_delete' article.pk %}">Удалить новость</a>
+            <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}">Редактировать новость</a>
+        {% endif %} 
         </div>
     </div>
 </div>

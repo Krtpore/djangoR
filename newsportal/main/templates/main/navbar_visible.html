@@ -27,7 +27,7 @@
 <script>
     $(function() {
       $("#search_news").autocomplete({
-        source: "search_news_auto",
+        source: "search_news_auto/",
         select: function (event, ui) { //item selected
           AutoCompleteSelectHandler(event, ui)
         },
@@ -67,7 +67,14 @@
                 <span class="content-to-hide">Все новости</span></a> 
             </div>
             <!-- Был редирект на страницу логина, но переделал кнопку в disabled -->
-            {% if request.user.id %}
+            <!-- {% if request.user.id %} {% endif %} -->
+            {% if request.user|has_group:"Admins" %}
+                <div class="text-left mb-3">
+                    <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
+                    <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
+                    <span class="content-to-hide">Предложить новость</span></a>
+                </div>
+            {% elif request.user|has_group:"Authors" %}
               <div class="text-left mb-3">
                   <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
                   <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
