@@ -91,7 +91,7 @@ def registration(request):
     context = {'form':form}
     return render(request, 'users/registration.html', context) 
 
-@check_group('Authors')
+@login_required
 def contact_page(request):
     if request.method == "POST":
         form = ContactForm(request.POST)

@@ -6,6 +6,8 @@
 {% block title %} Мои новости {% endblock %}
 {% block navbar %} {% include 'users/user_panel.html' %} {% endblock %}
 
+{% load users_extras %}
+
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
 {% block body %}
@@ -84,17 +86,20 @@
     {% else %}
     <div class="content_center">
         <div class="row content_center">
-            <h4> Вы еще не написали ни одной новости. </h4>
-            <h5> Но можете сделать это сейчас нажав на кнопку ниже. </h5>
-            <h5> Или вернуться на любую страницу по ссылкам в боковом меню. </h5>
-            <div class="text-left mb-3">
-                <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
-                <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
-                            <span class="content-to-hide">Хочу создать новость!</span></a>
-            </div>
-
-                
-            
+            {% if request.user|has_group:"Authors" %}
+                <h4> Вы еще не написали ни одной новости. </h4>
+                <h5> Но можете сделать это сейчас нажав на кнопку ниже. </h5>
+                <h5> Или вернуться на любую страницу по ссылкам в боковом меню. </h5>
+                <div class="text-left mb-3">
+                    <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
+                    <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
+                                <span class="content-to-hide">Хочу создать новость!</span></a>
+                </div>
+            {% elif request.user|has_group:"Admins" %}
+            {% else %}
+                <h4> К сожалению вы пока не можете создавать новости</h4>
+                <h5> Но это всегда можно исправить</h5>
+            {% endif %}
         </div>
     </div>
 {% endif %}
