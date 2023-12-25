@@ -6,6 +6,8 @@ from django.db import connection, reset_queries
 from django.views.generic import DetailView, DeleteView, UpdateView, ListView
 from django.contrib.auth.decorators import login_required
 
+from django.core.paginator import Paginator
+
 from django.conf import settings
 from users.utils import check_group
 
@@ -15,6 +17,15 @@ from .forms import *
 #человек не аутентифицирован - отправляем на страницу другую
 
 import json
+
+def pagination(request):
+    articles = Article.objects.all()
+    p = Paginator(articles, 3)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    print(page_obj)
+    context = {'articles': page_obj}
+    return render(request,'news/news_list.html',context)
 
 class ArticleDetailView(DetailView):
     model = Article

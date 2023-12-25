@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
-# Create your models here.
+
+from news.models import Article
 
 class Account(models.Model):
     gender_choises= (('M', 'Male'),
@@ -29,6 +30,13 @@ class Account(models.Model):
         ordering = ['user', 'email']
         verbose_name = 'Аккуант'
         verbose_name_plural = 'Аккаунты'
+
+class FavoriteArticle(models.Model):
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    article = models.ForeignKey(Article,on_delete=models.SET_NULL,null=True)
+    create_at=models.DateTimeField(auto_now_add=True)
+
+
 
 
 # class Image(models.Model):

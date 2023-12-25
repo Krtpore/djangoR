@@ -58,6 +58,7 @@
       </div>
     <div class="row">
             <div class="col-12">
+            <hr>                  
                   <div class="text-left mb-3">
                       <a href="{% url 'main' %}" class="btn btn-light" role="button">
                       <img src="{% static 'main/img/icon-home.png' %}" alt="Иконка домашней страницы" class="navbaricons"> 
@@ -98,9 +99,9 @@
                       <div class="dropdown text-left mb-3">
                         <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                           {% if request.user.account.account_image.url %}
-                            <img src="{{ request.user.account.account_image.url }}" alt="Иконка пользователя" class="navbaricons">
+                            <img src="{{ request.user.account.account_image.url }}" alt="userpic" class="navbaricons">
                           {% else %}  
-                            <img src="{% static 'main/img/no-camera.png' %}" alt="Иконка пользователя" class="navbaricons">
+                            <img src="{% static 'main/img/no-camera.png' %}" alt="userpic" class="navbaricons">
                           {% endif %}
                           {{ request.user.username }}
                         </button>
@@ -124,15 +125,17 @@
                     {% if request.user|has_group:"Authors" %}
                     <div class="text-left mb-3">
                       <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
-                          <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Мои статьи" class="navbaricons">
+                          <img src="{% static 'main/img/icon-my-articles.png' %}" alt="Мои статьи" class="navbaricons">
                           <span class="content-to-hide">Мои статьи</span></a>
                     </div>
                     {% endif %}
+                    {% if request.user.id %}
                     <div class="text-left mb-3">
                       <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
-                          <img src="{% static 'main/img/icon-send-mail.png' %}" alt=" Избранное" class="navbaricons">
+                          <img src="{% static 'main/img/icon-my-favorite.png' %}" alt=" Избранное" class="navbaricons">
                           <span class="content-to-hide"> Избранное</span></a>
                     </div>
+                    {% endif %}
         <br>
         <br>
         <br>
