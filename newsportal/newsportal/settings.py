@@ -13,6 +13,18 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 import os
+# import environ
+
+# переменная для подключения env файла
+# env = environ.Env()
+# environ.Env.read_env()
+
+# защита вебхука
+# sc = env('SECRET_KEY')
+# GITHUB_WEBHOOK_KEY='lmNA5HynZsNSkJ8GCeY1rm8j7Gy2YWLJPtoM4X8lIxRlUj8yKC'  # - в env файл и в гит добавить
+# GITHUB_WEBHOOK_KEY = env('GITHUB_WEBHOOK_KEY')
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,6 +35,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-josyr_bops(pgr4asf-1ybj36&_(fz=9b_pufa=q&1vwaqn*n@'
+
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = env("SECRET_KEY") #'django-insecure-josyr_bops(pgr4asf-1ybj36&_(fz=9b_pufa=q&1vwaqn*n@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -102,6 +117,18 @@ DATABASES = {
 #     }
 # }
 
+# вариант с env
+# DATABASES = {
+#     'default': {
+#         'ENGINE': env("DB_ENGINE")           #'django.db.backends.mysql',
+#         'NAME': env("DB_NAME")               #'eh0388pe$newsportal',
+#         'USER': env("DB_USERY")              #'eh0388pe',
+#         'PASSWORD': env("DB_PASSWORD")       #'xc3pМq0Wt5da8s',
+#         'HOST': env("DB_HOST")               #'eh0388pe.mysql.pythonanywhere-services.com',
+#     }
+# }
+
+
 # PG вариант 2 нет доступа к БД со стороны python anywhere доступ к внещке закрыт, только белый список
 # DATABASES = {
 #     'default': {
@@ -163,6 +190,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATIC_ROOT = ''  # заполнить для collectstaic
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
