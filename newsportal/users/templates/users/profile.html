@@ -3,13 +3,15 @@
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
 
-{% block title %} {{ request.user.username }} - профиль{% endblock %}
+{% load i18n %}
+
+{% block title %} {{ request.user.username }} - {% trans 'профиль' %}{% endblock %}
 {% block navbar %} {% include 'users/user_panel.html' %} {% endblock %}
 
 {% block body %}
 <div class="row">
     <div class="text-center" style="margin-top:30px;">
-        <h2>Профиль пользователя {{ request.user.username }}</h2>
+        <h2>{% trans 'Профиль пользователя' %} {{ request.user.username }}</h2>
         <br>
         <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
@@ -20,7 +22,7 @@
                                  class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4> {{ request.user.username }}</h4>
-                                <p class="text-secondary mb-1"> {% if request.user.is_staff %} Автор {% endif %}</p>
+                                <p class="text-secondary mb-1"> {% if request.user.is_staff %} {% trans 'Автор' %} {% endif %}</p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +65,7 @@
                     <div class="card-body">
                         <div class="row content_center">
                             <div class="col-sm-3 content_center_left">
-                                <h6 class="mb-0">Full Name</h6>
+                                <h6 class="mb-0">{% trans 'Имя' %}</h6>
                             </div>
                             <div class="col-sm-9 text-secondary content_center_left">
                                 {{ request.user.username }}
@@ -72,7 +74,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3 content_center_left">
-                                <h6 class="mb-0">Email</h6>
+                                <h6 class="mb-0">{% trans 'Эл.почта' %}</h6>
                             </div>
                             <div class="col-sm-9 text-secondary content_center_left">
                                 {{ request.user.email }}
@@ -81,7 +83,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3 content_center_left">
-                                <h6 class="mb-0">Phone</h6>
+                                <h6 class="mb-0">{% trans 'Телефон' %}</h6>
                             </div>
                             <div class="col-sm-9 text-secondary content_center_left">
                                 {{ request.user.account.phone }}
@@ -89,7 +91,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0 content_center">Address</h6>
+                                <h6 class="mb-0 content_center">{% trans 'Адрес' %}</h6>
                             </div>
                             <div class="col-sm-9 text-secondary content_center">
                                     {{ request.user.account.address }}
@@ -102,7 +104,9 @@
 
                     <div class="text-center">
                         <a class="btn btn-outline-primary" style="margin-bottom:15px;"
-                           href="{% url 'profile_update' %}">Edit</a>
+                           href="{% url 'profile_update' %}">{% trans 'Редактировать' %}</a>
+                        <a class="btn btn-outline-danger" style="margin-bottom:15px;"
+                           href="{% url 'profile_delete' %}">{% trans 'Удалить аккаунт' %}</a>
                     </div>
 
                 </div>

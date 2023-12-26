@@ -1,5 +1,11 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import translation
+from django.conf import settings
+from django.http import HttpResponse, HttpResponseRedirect
+import hashlib
+import hmac
+
 
 def page404(request, exception):
     return render(request, 'main/page404.html')
@@ -25,8 +31,20 @@ def base(request):
 def news_example(request):
     return render(request, 'main/news_example.html')
 
-def user(request):
-    return render(request, 'main/user.html')
+def selectlanguage(request):
+    #в 25 символов входит корневой катлого + код языка из двух букв + '/'
+    url = request.META.get('HTTP_REFERER')[25:]
+    # print('URL:',url)
+    if request.method =='POST':
+        current_language = translation.get_language()
+        # print('До:',current_language)
+        lang = request.POST.get('language')
+        translation.activate(lang)
+        # print('После:',translation.get_language())
+        response = HttpResponse('')
+        response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang)
+        # print('/'+lang+'/'+url)
+        return HttpResponseRedirect('/'+lang+'/'+url)
 
 import git
 from django.views.decorators.csrf import csrf_exempt
@@ -43,8 +61,6 @@ def update_server(request):
     else:
         return HttpResponse("Вы попали не туда")
     
-import hashlib
-import hmac
 from django.http import HttpResponseServerError
 def verify_signature(payload_body, secret_token, signature_header):
     """Verify that the payload was sent from GitHub by validating SHA256.

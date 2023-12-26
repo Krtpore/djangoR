@@ -107,6 +107,11 @@ def contact_page(request):
     context = {'form': form}
     return render(request,'users/contact_page.html',context)
 
+@login_required
+def profile_delete(request):
+    user = request.user
+    user.delete()
+    return redirect('main')
 
 def index(request):
     print(request.user, request.user.id)
@@ -136,18 +141,14 @@ def my_news_list(request):
 
     return render(request,'users/my_news_list.html',context)
 
+
+
 def my_favorites(request):
     categories = Article.categories
     author_list = User.objects.all()
     favlist=FavoriteArticle.objects.filter(user=request.user.id)
     articles = Article.objects.filter(favoritearticle__in=favlist)
     total = len(articles)
-    # print(favlist)
-    # print(Article.objects.first())
-    # print(total)
-    # print([f.name for f in FavoriteArticle._meta.get_fields()])
-    # print([f.name for f in Article._meta.get_fields()])
-    # context = {1:1}
     p = Paginator(articles,3)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)

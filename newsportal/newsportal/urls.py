@@ -16,16 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import i18n
+
+import main.views as main_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('selectlanguage/', main_views.selectlanguage, name='selectlanguage'),
+    path('i18n',include('django.conf.urls.i18n')),
+]
+    
+urlpatterns += i18n.i18n_patterns(
     path('', include('main.urls')),
     path('news/', include('news.urls')),
     path('users/', include('users.urls')),
-] # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+ ) # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

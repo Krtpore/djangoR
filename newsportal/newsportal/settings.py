@@ -43,8 +43,7 @@ SECRET_KEY = 'django-insecure-josyr_bops(pgr4asf-1ybj36&_(fz=9b_pufa=q&1vwaqn*n@
 # DEBUG = False  - при деплое сделав collectstatic
 DEBUG = True
 
-ALLOWED_HOSTS = ['eh0388pe.pythonanywhere.com', '127.0.0.1']
-
+ALLOWED_HOSTS = ['eh0388pe.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -74,7 +73,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.locale.LocaleMiddleware', # модуль мультиязычности
 ]
+
+
+
 
 INTERNAL_IPS = ['127.0.0.1',]
 ROOT_URLCONF = 'newsportal.urls'
@@ -179,6 +182,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'ru-RU'
+LANGUAGES = [
+    ('ru', ('Russian')),
+    ('en', ('English')),
+]
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 TIME_ZONE = 'UTC'
 
@@ -186,12 +197,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_ROOT = ''  # заполнить для collectstaic
+# STATIC_ROOT = BASE_DIR / "static"     # заполнить для collectstaic
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')

@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
+{% load i18n %}
 <head>
-    <title>{% block title %}news page{% endblock %}</title>
+    <title>{% block title %}{% trans 'Страница новостей' %}{% endblock %}</title>
 </head>
 <body>
     {% load static %}

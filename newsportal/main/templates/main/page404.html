@@ -3,20 +3,22 @@
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+{% load i18n %}
+
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
-{% block title %}page404 example{% endblock %}
+{% block title %}{% trans 'страница404' %}{% endblock %}
 {% block body %} 
     <div class="row wraptocenter">
-        <h1> Page404 </h1>
+        <h1> {% trans 'Страница404' %} </h1>
     </div>
     <hr>
     <div class="row content-center">
         <img src="{% static 'main/img/page404.png' %}" class="content-center" alt="Упс, что-то пошло не так" style="width:auto;height:400px">
     </div>
-    <h4> Кажется что-то сломалось или здесь этого нет</h4>
-    <h4> но мы работаем над этим.... </h4>
-    <h4> Нажмите на успокаивающий зеленый   > > > <a href="{% url 'main' %}" class="btn" role="button">
+    <h4> {% trans 'Кажется что-то сломалось или здесь этого нет' %}</h4>
+    <h4> {% trans 'но мы работаем над этим....' %} </h4>
+    <h4> {% trans 'Нажмите на успокаивающий зеленый' %}   > > > <a href="{% url 'main' %}" class="btn" role="button">
         <img src="{% static 'main/img/panic_button.jpg' %}" style="width:auto;height:150px" alt="panic button"> 
-        </a></h3>
+        </a></h4>
 
 {% endblock %}

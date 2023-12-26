@@ -3,7 +3,9 @@
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-{% block title %} Мои новости {% endblock %}
+{% load i18n %}
+
+{% block title %} {% trans 'Мои новости' %} {% endblock %}
 {% block navbar %} {% include 'users/user_panel.html' %} {% endblock %}
 
 {% load users_extras %}
@@ -11,56 +13,6 @@
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
 {% block body %}
-    <!-- {% if articles|length  != 0 %}
-        <div class="row" align="center">
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group col-12" style="width:97%">
-                    <div class="row">
-                        <div class="col-1">
-                            <div class="row">
-                                <div class="col-6">
-                                    <img src="{% static 'main/img/icon-filter.png' %}" alt="Иконка фильтра" style="width:auto;height:35px">
-                                </div>
-                                <div class="col-6">
-                                    <p3 style="text-align: center; vertical-align: middle;"> {{ total }} </p3> 
-                                </div>
-                            </div>
-                        </div>     
-                        <select class="form-select col" name="category_filter" style="width:100%">
-                            <option value="0">Все категории</option>
-                            {% for c in categories %}
-                                <option value="{{ forloop.counter }}" {% if selected_category == "forloop.counter" %} selected {% endif %}> {{ c.1 }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                        <input type="submit" class="btn btn-success col-2" value="Применить">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <br>
-        {% if total > 1 %}
-            <div class="row">
-                <nav aria-label="Pagination">
-                    <ul class="pagination justify-content-center">
-                        {% if articles.has_previous %}
-                            <li class="page-item"><a class="page-link" href="?page={{ articles.previous_page_number }}">Предыдущая</a></li>
-                        {% endif %}
-                        {% for p in articles.paginator.page_range %}
-                            {% if articles.number == p %}
-                                <li class="page-item"><p class="page-link" style="color:black;"> {{ p }}</p></li>
-                            {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ p }}"> {{ p }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                        {% if articles.has_next %}
-                            <li class="page-item"><a class="page-link" href="?page={{ articles.next_page_number }}">Next</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-        {% endif %} -->
         {% for article in articles %}
             <div class="card border-light rounded-8 mb-3" style="max-width: 100rem; background-color: #f8f9fa; border-color: gray-300">
                 <div class="row g-0">
@@ -71,40 +23,14 @@
                         <div class="card-body">
                             <h5 class="{{ article.title }}">{{ article.title }} </h5>
                             <h6 class="card-subtitle mb-2 content_justify lh-sm" style="text-align: justify;">{{ article.anouncement }}</h6>
-                            <p class="card-text"><a href="{% url 'news_detail' article.pk %}">Читать новость</a></p>
-                            <p class="card-text"><small class="text-muted">Опубликовано: {{ article.date }}   Изменено: {{ article.date_change }}</small></p>
-                            <p class="card-text"><small class="text-muted">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</small></p>
-                            <p class="card-text"><small class="text-muted">Просмотров: {{ article.get_views }} </small></p>
+                            <p class="card-text"><a href="{% url 'news_detail' article.pk %}">{% trans 'Читать новость' %}</a></p>
+                            <p class="card-text"><small class="text-muted">{% trans 'Опубликовано' %}: {{ article.date }}   {% trans 'Изменено' %}: {{ article.date_change }}</small></p>
+                            <p class="card-text"><small class="text-muted">{% trans 'Теги' %}: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</small></p>
+                            <p class="card-text"><small class="text-muted">{% trans 'Просмотров' %}: {{ article.get_views }} </small></p>
                             <a class="btn btn-outline-success" href="{% url 'favorites' article.pk %}"><img src="{% static 'main/img/icon-my-favorite.png' %}" alt="В избранное" class="navbaricons"> В избранное</a>
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
-    <!-- {% else %}
-    <div class="content_center">
-        <div class="row content_center">
-            {% if request.user|has_group:"Authors" %}
-                <h4> Вы еще не написали ни одной новости. </h4>
-                <h5> Но можете сделать это сейчас нажав на кнопку ниже. </h5>
-                <h5> Или вернуться на любую страницу по ссылкам в боковом меню. </h5>
-                <div class="text-left mb-3">
-                    <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
-                    <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
-                                <span class="content-to-hide">Хочу создать новость!</span></a>
-                </div>
-            {% elif request.user|has_group:"Admins" %}
-            {% else %}
-                <h4> К сожалению вы пока что не можете создавать новости.</h4>
-                <h5> Но это не сложно исправить!</h5>
-                <h5> Отправьте нам сообщение через форму обратной связи:</h5>
-                <div class="text-left mb-3">
-                    <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
-                        <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка письма" class="navbaricons">
-                        <span class="content-to-hide">Отправить сообщение</span></a>
-                </div>
-            {% endif %}
-        </div>
-    </div>
-{% endif %} -->
 {% endblock %}

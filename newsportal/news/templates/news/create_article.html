@@ -2,14 +2,15 @@
 {% load static %}
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block title %} Добавление новости {% endblock %}
+{% block title %} {% trans 'Добавление новости' %} {% endblock %}
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
 {% block body %} 
 <div class="row">
   <div class="text-center" style="margin-top:30px;">
-      <h1 >Добавление новости</h1>
+      <h1 >{% trans 'Добавление новости' %}</h1>
   <form method="post" class="contact_form" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form | crispy }}

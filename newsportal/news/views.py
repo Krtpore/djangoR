@@ -1,6 +1,6 @@
 from typing import Any
 from django.shortcuts import render, HttpResponse, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .models import *
 from django.db import connection, reset_queries
 from django.views.generic import DetailView, DeleteView, UpdateView, ListView
@@ -12,8 +12,10 @@ from django.conf import settings
 from users.utils import check_group
 
 from .utils import ViewCountMixin
+from time import time
 
 from .forms import *
+
 #человек не аутентифицирован - отправляем на страницу другую
 
 import json
@@ -116,6 +118,26 @@ def search_news_auto(request):
     mimetype = 'application/json'
     return HttpResponse(data,mimetype)
 
+def search(request):
+    if request.method == 'POST': #пришел запрос из бокового меню
+        value = request.POST['search_input'] #находим новости
+        articles = Article.objects.filter(title__icontains=value)
+        if len(articles) == 1: #если одна- сразу открываем подробное отображение новости
+            return render(request, 'news/news_detail.html', {'article': articles[0]})
+        else:
+            #если несколько - отправляем человека в функцию index со страницей-списком новостей и фильтрами
+            #не забываем передать поисковый запрос:
+            # либо через сессии:
+            request.session['search_input'] = value
+            return redirect('news')
+            #либо через фрагмент URLссылки:
+            # но в таком случае придётся обрабатывать ссылку в Urls
+            #функция reverse из модуля Urls добавит переданные аргументы в качестве get-аргументов.
+            # return redirect(reverse('news', kwargs={'search_input':value}))
+            # return render(request, 'news/news_list.html', {'articles': articles})
+    else:
+        return redirect('main')
+
 
 def news(request):
     categories = Article.categories #создали перечень категорий
@@ -124,6 +146,8 @@ def news(request):
     if request.method == "POST":
         selected_author = int(request.POST.get('author_filter'))
         selected_category = int(request.POST.get('category_filter'))
+        request.session['selected_author'] = selected_author
+        request.session['selected_category'] = selected_category
         if selected_author == 0: #выбраны все авторы
             articles = Article.objects.all()
         else:
@@ -131,17 +155,32 @@ def news(request):
         if selected_category != 0: #фильтруем найденные по авторам результаты по категориям
             articles = articles.filter(category__icontains=categories[selected_category-1][0])
     else: #если страница открывется впервые
-        selected_author = 0
+        selected_author = request.session.get('selected_author')
+        if selected_author != None: #если не пустое - находим нужные ноновсти
+            articles = Article.objects.filter(author=selected_author)
+        else:
+            selected_author = 0
         selected_category = 0
-        articles = Article.objects.all()
-    
+        value = request.session.get('search_input') #вытаскиваем из сессии значение поиска
+        if value != None: #если не пустое - находим нужные ноновсти
+            articles = Article.objects.filter(title__icontains=value)
+            del request.session['search_input'] #чистим сессию, чтобы этот фильтр не "заело"
+        else:
+            #если не оказалось таокго ключика или запрос был кривой - отображаем все элементы
+            articles = Article.objects.all()
+
+    articles=articles.order_by('-date')
     total = len(articles)
+    p = Paginator(articles,2)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
 
     p = Paginator(articles,3)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
     context = {'articles': page_obj, 'author_list':author_list, 'selected_author':selected_author,
-               'categories':categories,'selected_category': selected_category, 'all_articles_len': all_articles_len, 'total':total,}
+               'categories':categories,'selected_category': selected_category, 'all_articles_len': all_articles_len,
+               'total':total}
     
     return render(request,'news/news_list.html',context)
 

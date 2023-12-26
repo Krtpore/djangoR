@@ -1,6 +1,9 @@
 {% extends 'main/base.html' %}
+{% load i18n %}
+
+
 <head>
-    <title>{% block title %}About us{% endblock %}</title>
+    <title>{% block title %} {% trans 'О нас' %} {% endblock %}</title>
 </head>
 <body>
     {% load static %}
@@ -12,13 +15,13 @@
 <h2> О нас:</h2>
 <img src="{% static 'main/img/man_reader.jpg' %}" alt="Логотип" style="width:auto;height:150px">
 <aside>
-    <h3> Портал самых честных новостей </h3>
+    <h3> {% trans 'Портал самых честных новостей' %} </h3>
     <div style="text-align:justify;">
-        <p> Лицензия СМИ: отсутствует</p>
-        <p> Юридический адрес: отсутствует</p>
-        <p> Наш офис: отсутствует</p>
-        <p> Телефон: 8 001 56 57 58</p>
-        <p> Email: jhon_doe@email.com</p>
+        <p> {% trans 'Лицензия СМИ: отсутствует' %}</p>
+        <p> {% trans 'Юридический адрес: отсутствует' %}</p>
+        <p> {% trans 'Наш офис: отсутствует' %}</p>
+        <p> {% trans 'Телефон: 8 001 56 57 58'%}</p>
+        <p> {% trans 'Эл.почта: jhon_doe@email.com' %}</p>
     </div>
 </aside>
 

@@ -6,7 +6,7 @@
 {% bootstrap_javascript %}
 
 {% load users_extras %}
-
+{% load i18n %}
 
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
@@ -25,19 +25,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 <script>
-    $(function() {
-      $("#search_news").autocomplete({
-        source: "search_news_auto/",
-        select: function (event, ui) { //item selected
-          AutoCompleteSelectHandler(event, ui)
-        },
-        minLength: 2,
-      });
+  $(function() {
+    $("#search_input").autocomplete({
+      source: "{% url 'search_news_auto' %}",
+      select: function (event, ui) { //item selected
+        AutoCompleteSelectHandler(event, ui)
+      },
+      minLength: 2,
     });
-    function AutoCompleteSelectHandler(event, ui)
-    {
-      var selectedObj = ui.item;
-    }
+  });
+  function AutoCompleteSelectHandler(event, ui)
+  {
+    var selectedObj = ui.item;
+  }
 </script>
 
 
@@ -52,38 +52,59 @@
         </div>
         <div class="col-8 content_center">
           <div>
-            <h4 class="content-to-hide">Меню сайта</h4>
+            <h4 class="content-to-hide">{% trans 'Меню сайта' %}</h4>
           </div>
         </div>
       </div>
     <div class="row">
             <div class="col-12">
+
+              <hr>                  
+                <ul class="dropdown default-dropdown">
+                
+                 <form method="post" action="{% url 'selectlanguage' %}">
+                    {% csrf_token %}
+                    <select name="language" onchange="submit()">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                            {{ language.name_local }} ({{language.code }})
+                        </option>
+                        {% endfor %}
+                    </select>
+                  </form>
+                </ul>
+              <hr>  
+
+
               <div class="text-left mb-3">
                   <a href="{% url 'profile' %}" class="btn btn-light" role="button">
                   <img src="{% static 'main/img/icon-home.png' %}" alt="Иконка профиля пользователя" class="navbaricons"> 
-                  <span class="content-to-hide">Мой профиль</span></a>
+                  <span class="content-to-hide">{% trans 'Мой профиль' %}</span></a>
               </div> 
               <div class="text-left mb-3">
                 <a href="{% url 'my_news_list' %}" class="btn btn-light" role="button">
                 <img src="{% static 'main/img/icon-my-articles.png' %}" alt="Иконка мои публикации" class="navbaricons"> 
-                <span class="content-to-hide">Мои публикации</span></a>
+                <span class="content-to-hide">{% trans 'Мои публикации' %}</span></a>
               </div>  
               <div class="text-left mb-3">
                 <a href="{% url 'my_favorites' %}" class="btn btn-light" role="button">
                   <img src="{% static 'main/img/icon-my-favorite.png' %}" alt="Избранное" class="navbaricons"> 
-                <span class="content-to-hide">Избранное</span></a>
+                <span class="content-to-hide">{% trans 'Избранное' %}</span></a>
               </div>
               <div class="text-left mb-3">
                 <a href="{% url 'main' %}" class="btn btn-light" role="button">
                   <img src="{% static 'main/img/undo.png' %}" alt="Главное меню" class="navbaricons"> 
-                <span class="content-to-hide">Вернуться в главное меню</span></a>
+                <span class="content-to-hide">{% trans 'Вернуться в главное меню' %}</span></a>
               </div>
               {% if request.user|has_group:"Admins" %}
               <hr>
               <div class="text-left mb-3">
                 <a href="/admin/" class="btn btn-light" role="button">
                 <img src="{% static 'main/img/administrator.png' %}" alt="Панель администратора" class="navbaricons"> 
-                <span class="content-to-hide">Панель администратора</span></a>
+                <span class="content-to-hide">{% trans 'Панель администратора' %}</span></a>
               </div>
               {% endif %} 
               {% if request.user|has_group:"Authors" %}
@@ -91,7 +112,7 @@
               <div class="text-left mb-3">
                 <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
                 <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
-                <span class="content-to-hide">Создать новость</span></a>
+                <span class="content-to-hide">{% trans 'Создать новость' %}</span></a>
               </div>
               {% endif %} 
         <br>
@@ -99,14 +120,14 @@
         <br>
         <br>
         <div class="row">
-            <div class="grid gap-0 column-gap-3">
-            <div class="input-group rounded">
-                <input type="search" input id="search_news" class="form-control rounded " placeholder="Искать новости" aria-label="Искать новости" aria-describedby="search_news" />
-                <span class="btn btn-light" id="search_news">
-                    <i class="fas fa-search"></i>
-                </span>
-            </div>
-            </div>
+          <form action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+              <div class="search ">
+                  <input id="search_input" name="search_input" class="rounded w-75">
+                  <button type="submit" class="btn btn-light"><i class="fas fa-search"></i></button>
+              </div>
+          </form>
+        </div>
         </div>
     </div>
 

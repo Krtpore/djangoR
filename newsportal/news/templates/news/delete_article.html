@@ -4,7 +4,7 @@
 {% load crispy_forms_tags %}
 
 <head>
-    <title>{% block title %} Удаление новости {% endblock %}</title>
+    <title>{% block title %} {% trans 'Удаление новости' %} {% endblock %}</title>
 </head>
 <body>
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
@@ -13,10 +13,10 @@
 {% block body %} 
 <div class="row">
     <div class="text-center" style="margin-top:30px;">
-    <h1 >Удалить {{ article.title }}?</h1>
+    <h1 >{% trans 'Удалить' %} {{ article.title }}?</h1>
     <form method="post" class="contact_form">
         {% csrf_token %}
-        <a class="btn btn-warning" href="{% url 'news' %}">Отмена</a>
+        <a class="btn btn-warning" href="{% url 'news' %}">{% trans 'Отмена' %}</a>
         <input type="submit" class="btn btn-danger" value = "Удалить">
     </form>
     </div>
