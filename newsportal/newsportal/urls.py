@@ -25,7 +25,6 @@ urlpatterns = [
     path('', include('main.urls')),
     path('news/', include('news.urls')),
     path('users/', include('users.urls')),
-    path('update_server/', main_views.update_server, name='update_server'),
 ] # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

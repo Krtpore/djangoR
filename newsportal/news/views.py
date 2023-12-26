@@ -118,7 +118,6 @@ def search_news_auto(request):
 
 
 def news(request):
-
     categories = Article.categories #создали перечень категорий
     author_list = User.objects.all() #создали перечень авторов
     all_articles_len = len(Article.objects.all()) # для цифры отфильтрованных новостей

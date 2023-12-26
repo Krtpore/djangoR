@@ -12,6 +12,7 @@ urlpatterns = [
     path('about/', views.about, name = 'about'),
     path('news_example/', views.news_example, name = 'news_example'),
     path('page404/', views.page404, name = 'page404'),
+    path('update_server/', views.update_server, name='update_server'),
 ]
 
 handler404 = 'main.views.page404'

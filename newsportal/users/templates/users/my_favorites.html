@@ -3,13 +3,15 @@
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-{% block title %} Избранное {% endblock %}
+{% block title %} Мои новости {% endblock %}
 {% block navbar %} {% include 'users/user_panel.html' %} {% endblock %}
+
+{% load users_extras %}
 
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
 
 {% block body %}
-    {% if articles|length  != 0 %}
+    <!-- {% if articles|length  != 0 %}
         <div class="row" align="center">
             <form method="post">
                 {% csrf_token %}
@@ -21,9 +23,7 @@
                                     <img src="{% static 'main/img/icon-filter.png' %}" alt="Иконка фильтра" style="width:auto;height:35px">
                                 </div>
                                 <div class="col-6">
-                                    <!-- {% if all_articles_len != articles|length %}  -->
                                     <p3 style="text-align: center; vertical-align: middle;"> {{ total }} </p3> 
-                                    <!-- {% endif %} -->
                                 </div>
                             </div>
                         </div>     
@@ -60,7 +60,7 @@
                     </ul>
                 </nav>
             </div>
-        {% endif %}
+        {% endif %} -->
         {% for article in articles %}
             <div class="card border-light rounded-8 mb-3" style="max-width: 100rem; background-color: #f8f9fa; border-color: gray-300">
                 <div class="row g-0">
@@ -81,21 +81,30 @@
                 </div>
             </div>
         {% endfor %}
-    {% else %}
+    <!-- {% else %}
     <div class="content_center">
         <div class="row content_center">
-            <h4> Вы еще не сохранили ни одной новости. </h4>
-            <h5> Но можете сделать это сейчас если перейдете к чтению новостей по кнопке. </h5>
-            <h5> Или вернуться на любую страницу по ссылкам в боковом меню. </h5>
-            <div class="text-left mb-3">
-                <a href="{% url 'news' %}"  class="btn btn-light" role="button">
-                <img src="{% static 'main/img/icon-news-reader.png' %}" alt="Иконка просмотра новостей" class="navbaricons">
-                <span class="content-to-hide">Хочу читать новости!</span></a> 
-            </div>
-
-                
-            
+            {% if request.user|has_group:"Authors" %}
+                <h4> Вы еще не написали ни одной новости. </h4>
+                <h5> Но можете сделать это сейчас нажав на кнопку ниже. </h5>
+                <h5> Или вернуться на любую страницу по ссылкам в боковом меню. </h5>
+                <div class="text-left mb-3">
+                    <a href="{% url 'create_article' %}" class="btn btn-light" role="button">
+                    <img src="{% static 'main/img/icon-create-article.png' %}" alt="Иконка создания новости" class="navbaricons">
+                                <span class="content-to-hide">Хочу создать новость!</span></a>
+                </div>
+            {% elif request.user|has_group:"Admins" %}
+            {% else %}
+                <h4> К сожалению вы пока что не можете создавать новости.</h4>
+                <h5> Но это не сложно исправить!</h5>
+                <h5> Отправьте нам сообщение через форму обратной связи:</h5>
+                <div class="text-left mb-3">
+                    <a href="{% url 'contact_page' %}" class="btn btn-light" role="button">
+                        <img src="{% static 'main/img/icon-send-mail.png' %}" alt="Иконка письма" class="navbaricons">
+                        <span class="content-to-hide">Отправить сообщение</span></a>
+                </div>
+            {% endif %}
         </div>
     </div>
-{% endif %}
+{% endif %} -->
 {% endblock %}

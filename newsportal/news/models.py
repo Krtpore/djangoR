@@ -110,3 +110,8 @@ class ViewCount(models.Model):
 
     def __str__(self):
         return self.article.title
+    
+    class Meta:
+        # ordering = ['title','date']
+        verbose_name= 'Просмотры новости'
+        verbose_name_plural='Просмотры новостей'
