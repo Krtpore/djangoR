@@ -40,8 +40,8 @@ SECRET_KEY = 'django-insecure-josyr_bops(pgr4asf-1ybj36&_(fz=9b_pufa=q&1vwaqn*n@
 # SECRET_KEY = env("SECRET_KEY") #'django-insecure-josyr_bops(pgr4asf-1ybj36&_(fz=9b_pufa=q&1vwaqn*n@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False  - при деплое сделав collectstatic
-DEBUG = True
+DEBUG = False  # - при деплое сделав collectstatic
+# DEBUG = True
 
 ALLOWED_HOSTS = ['eh0388pe.pythonanywhere.com', 'localhost', '127.0.0.1']
 
@@ -104,22 +104,22 @@ WSGI_APPLICATION = 'newsportal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'eh0388pe$newsportal',
-#         'USER': 'eh0388pe',
-#         'PASSWORD': 'xc3pМq0Wt5da8s',
-#         'HOST': 'eh0388pe.mysql.pythonanywhere-services.com',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'eh0388pe$newsportal',
+        'USER': 'eh0388pe',
+        'PASSWORD': 'xc3pМq0Wt5da8s',
+        'HOST': 'eh0388pe.mysql.pythonanywhere-services.com',
+    }
+}
 
 # вариант с env
 # DATABASES = {
@@ -181,7 +181,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'ru'
 LANGUAGES = [
     ('ru', ('Russian')),
     ('en', ('English')),
@@ -201,7 +201,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_ROOT = BASE_DIR / "static"     # заполнить для collectstaic
+STATIC_ROOT = BASE_DIR / "static"     # заполнить для collectstaic
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')

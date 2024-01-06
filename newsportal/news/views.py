@@ -140,48 +140,50 @@ def search(request):
 
 
 def news(request):
+    all_articles_len = len(Article.objects.all()) # для цифры отфильтрованных новостей
     categories = Article.categories #создали перечень категорий
     author_list = User.objects.all() #создали перечень авторов
-    all_articles_len = len(Article.objects.all()) # для цифры отфильтрованных новостей
     if request.method == "POST":
         selected_author = int(request.POST.get('author_filter'))
         selected_category = int(request.POST.get('category_filter'))
-        request.session['selected_author'] = selected_author
-        request.session['selected_category'] = selected_category
+        request.session['author_filter'] = selected_author
+        request.session['category_filter'] = selected_category
         if selected_author == 0: #выбраны все авторы
             articles = Article.objects.all()
         else:
             articles = Article.objects.filter(author=selected_author)
         if selected_category != 0: #фильтруем найденные по авторам результаты по категориям
             articles = articles.filter(category__icontains=categories[selected_category-1][0])
-    else: #если страница открывется впервые
-        selected_author = request.session.get('selected_author')
-        if selected_author != None: #если не пустое - находим нужные ноновсти
-            articles = Article.objects.filter(author=selected_author)
-        else:
-            selected_author = 0
-        selected_category = 0
+    else: #если страница открывется впервые или нас переадресовала сюда функция поиск
         value = request.session.get('search_input') #вытаскиваем из сессии значение поиска
         if value != None: #если не пустое - находим нужные ноновсти
             articles = Article.objects.filter(title__icontains=value)
-            del request.session['search_input'] #чистим сессию, чтобы этот фильтр не "заело"
-        else:
-            #если не оказалось таокго ключика или запрос был кривой - отображаем все элементы
+            # del request.session['search_input'] #чистим сессию, чтобы этот фильтр не "заело"
+        else: #если это не поисковый запрос, а переход по пагинатору или первое открытие
+            selected_author = request.session.get('author_filter')
+            selected_category = request.session.get('category_filter')
             articles = Article.objects.all()
+            if selected_author != None and int(selected_author) != 0:  # если не пустое - находим нужные ноновсти
+                articles = articles.filter(author=selected_author)
+            else:
+                selected_author = 0
+            if selected_category != None and int(selected_category) != 0:  # фильтруем найденные по авторам результаты по категориям
+                articles = articles.filter(category__icontains=categories[selected_category - 1][0])
+            else:
+                selected_category = 0
 
+    #сортировка от свежих к старым новостям
     articles=articles.order_by('-date')
     total = len(articles)
-    p = Paginator(articles,2)
-    page_number = request.GET.get('page')
-    page_obj = p.get_page(page_number)
-
     p = Paginator(articles,3)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
+    # title = _('Заголовок страницы новости-индекс')
     context = {'articles': page_obj, 'author_list':author_list, 'selected_author':selected_author,
-               'categories':categories,'selected_category': selected_category, 'all_articles_len': all_articles_len,
-               'total':total}
-    
+               'categories':categories,'selected_category': selected_category, 'total':total, 'all_articles_len': all_articles_len,
+            #   'title':title
+               }
+
     return render(request,'news/news_list.html',context)
 
 #  старая пагинация

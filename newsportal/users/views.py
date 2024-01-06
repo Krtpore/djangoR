@@ -86,18 +86,18 @@ def registration(request):
             authenticate(username=username,password=password)
             messages.success(request,f'{username} был зарегистрирован!')
             login(request,user)
-            return redirect('main')
+            return redirect ('first_redirect') # ('main') ошибка 500 после регистрации, сделал редирект на 1ый вход
     else:
         form = UserCreationForm()
     context = {'form':form}
-    return render(request, 'users/registration.html', context) 
+    return render(request, 'users/registration.html', context)
 
 @login_required
 def contact_page(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save() 
+            form.save()
             print('Сообщение отправлено', form.cleaned_data)
         else:
             print(form.errors)
@@ -154,11 +154,11 @@ def my_favorites(request):
     page_obj = p.get_page(page_number)
     selected_author = 0
     selected_category = 0
-    context = {'articles': page_obj, 
-               'author_list':author_list, 
+    context = {'articles': page_obj,
+               'author_list':author_list,
                'selected_author':selected_author,
                'categories':categories,
                'selected_category': selected_category,
                'total':total,}
 
-    return render(request,'users/my_news_list.html',context)
+    return render(request,'users/my_favorites.html',context)

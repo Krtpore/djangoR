@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-26 22:45+0400\n"
+"POT-Creation-Date: 2023-12-26 23:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,482 +20,490 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\main\templates\main\about.html:6
-#: .\main\templates\main\navbar_visible.html:113
+#: main/templates/main/about.html:6 main/templates/main/navbar_visible.html:113
 msgid "О нас"
 msgstr ""
 
-#: .\main\templates\main\about.html:18
+#: main/templates/main/about.html:18
 msgid "Портал самых честных новостей"
 msgstr ""
 
-#: .\main\templates\main\about.html:20
+#: main/templates/main/about.html:20
 msgid "Лицензия СМИ: отсутствует"
 msgstr ""
 
-#: .\main\templates\main\about.html:21
+#: main/templates/main/about.html:21
 msgid "Юридический адрес: отсутствует"
 msgstr ""
 
-#: .\main\templates\main\about.html:22
+#: main/templates/main/about.html:22
 msgid "Наш офис: отсутствует"
 msgstr ""
 
-#: .\main\templates\main\about.html:23
+#: main/templates/main/about.html:23
 msgid "Телефон: 8 001 56 57 58"
 msgstr ""
 
-#: .\main\templates\main\about.html:24
+#: main/templates/main/about.html:24
 msgid "Эл.почта: jhon_doe@email.com"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\base.html:28
+#: main/templates/main/custom_admin/base.html:28
 msgid "Skip to main content"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\base.html:43
+#: main/templates/main/custom_admin/base.html:43
 msgid "Welcome,"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\base.html:48
+#: main/templates/main/custom_admin/base.html:48
 msgid "View site"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\base.html:53
+#: main/templates/main/custom_admin/base.html:53
 msgid "Documentation"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\base.html:57
+#: main/templates/main/custom_admin/base.html:57
 msgid "Change password"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\base.html:61
+#: main/templates/main/custom_admin/base.html:61
 msgid "Log out"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\base.html:73
+#: main/templates/main/custom_admin/base.html:73
 msgid "Breadcrumbs"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\base.html:76
-#: .\main\templates\main\custom_admin\c_change_form.html:18
+#: main/templates/main/custom_admin/base.html:76
+#: main/templates/main/custom_admin/c_change_form.html:18
 msgid "Home"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\c_change_form.html:21
+#: main/templates/main/custom_admin/c_change_form.html:21
 #, python-format
 msgid "Add %(name)s"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\c_change_form.html:43
+#: main/templates/main/custom_admin/c_change_form.html:43
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\main\templates\main\custom_admin\c_custom_admin.html:3
+#: main/templates/main/custom_admin/c_custom_admin.html:3
 msgid "Django site admin"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\c_custom_admin.html:6
+#: main/templates/main/custom_admin/c_custom_admin.html:6
 msgid "Django administration"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\c_index.html:23
+#: main/templates/main/custom_admin/c_index.html:23
 msgid "Recent actions"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\c_index.html:24
+#: main/templates/main/custom_admin/c_index.html:24
 msgid "My actions"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\c_index.html:28
+#: main/templates/main/custom_admin/c_index.html:28
 msgid "None available"
 msgstr ""
 
-#: .\main\templates\main\custom_admin\c_index.html:42
+#: main/templates/main/custom_admin/c_index.html:42
 msgid "Unknown content"
 msgstr ""
 
-#: .\main\templates\main\foot.html:2
+#: main/templates/main/foot.html:2
 msgid "Нижний колонтитул"
 msgstr ""
 
-#: .\main\templates\main\foot.html:8
+#: main/templates/main/foot.html:8
 msgid "Является учебным проектом и не являеся средством массовой информации"
 msgstr ""
 
-#: .\main\templates\main\header.html:7
+#: main/templates/main/header.html:7
 msgid "Верхний колонтитул"
 msgstr ""
 
-#: .\main\templates\main\header.html:13
+#: main/templates/main/header.html:13
 msgid "Новостной портал учебный проект"
 msgstr ""
 
-#: .\main\templates\main\main.html:4
-#: .\main\templates\main\navbar_visible.html:82
+#: main/templates/main/main.html:4 main/templates/main/navbar_visible.html:82
 msgid "Домашняя страница"
 msgstr ""
 
-#: .\main\templates\main\main.html:13
+#: main/templates/main/main.html:13
 msgid "Приветствуем тебя, пользователь!"
 msgstr ""
 
-#: .\main\templates\main\main.html:14
+#: main/templates/main/main.html:14
 msgid "Рады видеть тебя на Портале самых честных новостей"
 msgstr ""
 
-#: .\main\templates\main\main.html:15
+#: main/templates/main/main.html:15
 msgid "Тут всегда можно найти свежие новости на интересующие тебя темы"
 msgstr ""
 
-#: .\main\templates\main\main.html:16
+#: main/templates/main/main.html:16
 msgid "Основное меню находится слева"
 msgstr ""
 
-#: .\main\templates\main\main.html:17
+#: main/templates/main/main.html:17
 msgid "Ссылки в меню работают, перенаправляют на соответствующие страницы"
 msgstr ""
 
-#: .\main\templates\main\navbar_visible.html:54
-#: .\users\templates\users\user_panel.html:55
+#: main/templates/main/navbar_visible.html:54
+#: users/templates/users/user_panel.html:55
 msgid "Меню сайта"
 msgstr ""
 
-#: .\main\templates\main\navbar_visible.html:87
-#: .\news\templates\news\news_list.html:9
+#: main/templates/main/navbar_visible.html:87
+#: news/templates/news/news_list.html:9
+#: users/templates/users/my_favorites.html:108
 msgid "Все новости"
 msgstr ""
 
-#: .\main\templates\main\navbar_visible.html:95
-#: .\main\templates\main\navbar_visible.html:101
-#: .\main\templates\main\navbar_visible.html:107
+#: main/templates/main/navbar_visible.html:95
+#: main/templates/main/navbar_visible.html:101
+#: main/templates/main/navbar_visible.html:107
 msgid "Предложить новость"
 msgstr ""
 
-#: .\main\templates\main\navbar_visible.html:118
+#: main/templates/main/navbar_visible.html:118
 msgid "Написать нам"
 msgstr ""
 
-#: .\main\templates\main\navbar_visible.html:133
+#: main/templates/main/navbar_visible.html:133
 msgid "Мой аккаунт"
 msgstr ""
 
-#: .\main\templates\main\navbar_visible.html:134
-#: .\users\templates\users\logout.html:7
+#: main/templates/main/navbar_visible.html:134
+#: users/templates/users/logout.html:7
 msgid "Выход"
 msgstr ""
 
-#: .\main\templates\main\navbar_visible.html:141
-#: .\users\templates\users\login.html:8
+#: main/templates/main/navbar_visible.html:141
+#: users/templates/users/login.html:8
 msgid "Вход"
 msgstr ""
 
-#: .\main\templates\main\navbar_visible.html:146
+#: main/templates/main/navbar_visible.html:146
 msgid "Регистрация"
 msgstr ""
 
-#: .\main\templates\main\navbar_visible.html:157
-msgid "Искать новости"
-msgstr ""
-
-#: .\main\templates\main\news.html:4
+#: main/templates/main/news.html:4
 msgid "Страница новостей"
 msgstr ""
 
-#: .\main\templates\main\page404.html:9
+#: main/templates/main/page404.html:9
 msgid "страница404"
 msgstr ""
 
-#: .\main\templates\main\page404.html:12
+#: main/templates/main/page404.html:12
 msgid "Страница404"
 msgstr ""
 
-#: .\main\templates\main\page404.html:18
+#: main/templates/main/page404.html:18
 msgid "Кажется что-то сломалось или здесь этого нет"
 msgstr ""
 
-#: .\main\templates\main\page404.html:19
+#: main/templates/main/page404.html:19
 msgid "но мы работаем над этим...."
 msgstr ""
 
-#: .\main\templates\main\page404.html:20
+#: main/templates/main/page404.html:20
 msgid "Нажмите на успокаивающий зеленый"
 msgstr ""
 
-#: .\news\templates\news\create_article.html:7
-#: .\news\templates\news\create_article.html:13
+#: news/templates/news/create_article.html:7
+#: news/templates/news/create_article.html:13
 msgid "Добавление новости"
 msgstr ""
 
-#: .\news\templates\news\delete_article.html:7
+#: news/templates/news/delete_article.html:7
 msgid "Удаление новости"
 msgstr ""
 
-#: .\news\templates\news\delete_article.html:16
+#: news/templates/news/delete_article.html:16
 msgid "Удалить"
 msgstr ""
 
-#: .\news\templates\news\delete_article.html:19
-#: .\users\templates\users\edit_password.html:18
+#: news/templates/news/delete_article.html:19
+#: users/templates/users/edit_password.html:18
 msgid "Отмена"
 msgstr ""
 
-#: .\news\templates\news\news.html:8
+#: news/templates/news/news.html:8
 msgid "Новости"
 msgstr ""
 
-#: .\news\templates\news\news_detail.html:12
+#: news/templates/news/news_detail.html:12
 msgid "Чтение новости"
 msgstr ""
 
-#: .\news\templates\news\news_detail.html:46
-#: .\news\templates\news\news_list.html:78
+#: news/templates/news/news_detail.html:46
+#: news/templates/news/news_list.html:78
+#: users/templates/users/my_favorites.html:61
 msgid "Назад"
 msgstr ""
 
-#: .\news\templates\news\news_detail.html:50
-#: .\news\templates\news\news_list.html:88
+#: news/templates/news/news_detail.html:50
+#: news/templates/news/news_list.html:88
+#: users/templates/users/my_favorites.html:71
 msgid "Вперед"
 msgstr ""
 
-#: .\news\templates\news\news_detail.html:54
-#: .\news\templates\news\news_list.html:105
-#: .\users\templates\users\my_favorites.html:27
-#: .\users\templates\users\my_news_list.html:82
+#: news/templates/news/news_detail.html:54
+#: news/templates/news/news_list.html:105
+#: users/templates/users/my_favorites.html:90
+#: users/templates/users/my_news_list.html:82
 msgid "Опубликовано"
 msgstr ""
 
-#: .\news\templates\news\news_detail.html:55
-#: .\news\templates\news\news_list.html:105
-#: .\users\templates\users\my_favorites.html:27
-#: .\users\templates\users\my_news_list.html:82
+#: news/templates/news/news_detail.html:55
+#: news/templates/news/news_list.html:105
+#: users/templates/users/my_favorites.html:90
+#: users/templates/users/my_news_list.html:82
 msgid "Изменено"
 msgstr ""
 
-#: .\news\templates\news\news_detail.html:61
-#: .\news\templates\news\news_detail.html:65
+#: news/templates/news/news_detail.html:61
+#: news/templates/news/news_detail.html:65
 msgid "Удалить новость"
 msgstr ""
 
-#: .\news\templates\news\news_detail.html:62
-#: .\news\templates\news\news_detail.html:66
+#: news/templates/news/news_detail.html:62
+#: news/templates/news/news_detail.html:66
 msgid "Редактировать новость"
 msgstr ""
 
-#: .\news\templates\news\news_list.html:52
+#: news/templates/news/news_list.html:52
+#: users/templates/users/my_favorites.html:36
 msgid "Все авторы"
 msgstr ""
 
-#: .\news\templates\news\news_list.html:59
-#: .\users\templates\users\my_news_list.html:38
+#: news/templates/news/news_list.html:59
+#: users/templates/users/my_favorites.html:43
+#: users/templates/users/my_news_list.html:38
 msgid "Все категории"
 msgstr ""
 
-#: .\news\templates\news\news_list.html:65
+#: news/templates/news/news_list.html:65
+#: users/templates/users/my_favorites.html:49
 msgid "Применить"
 msgstr ""
 
-#: .\news\templates\news\news_list.html:104
-#: .\users\templates\users\my_favorites.html:26
-#: .\users\templates\users\my_news_list.html:81
+#: news/templates/news/news_list.html:104
+#: users/templates/users/my_favorites.html:89
+#: users/templates/users/my_news_list.html:81
 msgid "Читать новость"
 msgstr ""
 
-#: .\news\templates\news\news_list.html:106
-#: .\users\templates\users\my_favorites.html:28
-#: .\users\templates\users\my_news_list.html:83
+#: news/templates/news/news_list.html:106
+#: users/templates/users/my_favorites.html:91
+#: users/templates/users/my_news_list.html:83
 msgid "Теги"
 msgstr ""
 
-#: .\news\templates\news\news_list.html:107
-#: .\users\templates\users\my_favorites.html:29
-#: .\users\templates\users\my_news_list.html:84
+#: news/templates/news/news_list.html:107
+#: users/templates/users/my_favorites.html:92
+#: users/templates/users/my_news_list.html:84
 msgid "Просмотров"
 msgstr ""
 
-#: .\news\templates\news\news_list.html:108
+#: news/templates/news/news_list.html:108
 msgid "В избранное"
 msgstr ""
 
-#: .\users\templates\users\contact_page.html:7
+#: users/templates/users/contact_page.html:7
 msgid "Обратная связь"
 msgstr ""
 
-#: .\users\templates\users\contact_page.html:13
+#: users/templates/users/contact_page.html:13
 msgid "Страница обратной связи"
 msgstr ""
 
-#: .\users\templates\users\contact_page.html:17
+#: users/templates/users/contact_page.html:17
 msgid "Отправить"
 msgstr ""
 
-#: .\users\templates\users\edit_password.html:8
+#: users/templates/users/edit_password.html:8
 msgid "Изменение пароля"
 msgstr ""
 
-#: .\users\templates\users\edit_password.html:13
+#: users/templates/users/edit_password.html:13
 msgid "Изменение пароля аккаунта"
 msgstr ""
 
-#: .\users\templates\users\edit_profile.html:8
-#: .\users\templates\users\edit_profile.html:14
+#: users/templates/users/edit_profile.html:8
+#: users/templates/users/edit_profile.html:14
 msgid "Редактирования профиля"
 msgstr ""
 
-#: .\users\templates\users\edit_profile.html:28
-#: .\users\templates\users\profile.html:25
-#: .\users\templates\users\registration.html:21
+#: users/templates/users/edit_profile.html:28
+#: users/templates/users/profile.html:25
+#: users/templates/users/registration.html:21
 msgid "Автор"
 msgstr ""
 
-#: .\users\templates\users\edit_profile.html:68
-#: .\users\templates\users\profile.html:68
+#: users/templates/users/edit_profile.html:68
+#: users/templates/users/profile.html:68
 msgid "Имя"
 msgstr ""
 
-#: .\users\templates\users\edit_profile.html:77
-#: .\users\templates\users\profile.html:77
+#: users/templates/users/edit_profile.html:77
+#: users/templates/users/profile.html:77
 msgid "Эл.почта"
 msgstr ""
 
-#: .\users\templates\users\edit_profile.html:86
-#: .\users\templates\users\profile.html:86
+#: users/templates/users/edit_profile.html:86
+#: users/templates/users/profile.html:86
 msgid "Телефон"
 msgstr ""
 
-#: .\users\templates\users\edit_profile.html:96
-#: .\users\templates\users\profile.html:94
+#: users/templates/users/edit_profile.html:96
+#: users/templates/users/profile.html:94
 msgid "Адрес"
 msgstr ""
 
-#: .\users\templates\users\edit_profile.html:106
+#: users/templates/users/edit_profile.html:106
 msgid "Сохранить"
 msgstr ""
 
-#: .\users\templates\users\edit_profile.html:108
+#: users/templates/users/edit_profile.html:108
 msgid "Изменить пароль"
 msgstr ""
 
-#: .\users\templates\users\login.html:15
+#: users/templates/users/login.html:15
 msgid "Вход в аккаунт"
 msgstr ""
 
-#: .\users\templates\users\login.html:21
+#: users/templates/users/login.html:21
 msgid "Забыли пароль / нужен новый аккаунт?"
 msgstr ""
 
-#: .\users\templates\users\login.html:22
+#: users/templates/users/login.html:22
 msgid "Зарегистрироваться"
 msgstr ""
 
-#: .\users\templates\users\logout.html:14
+#: users/templates/users/logout.html:14
 msgid "Вы вышли из аккаунта"
 msgstr ""
 
-#: .\users\templates\users\logout.html:17
+#: users/templates/users/logout.html:17
 msgid "Войти в аккаунт"
 msgstr ""
 
-#: .\users\templates\users\my_favorites.html:8
-#: .\users\templates\users\my_news_list.html:13
+#: users/templates/users/my_favorites.html:8
+#: users/templates/users/my_news_list.html:13
 msgid "Мои новости"
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:55
+#: users/templates/users/my_favorites.html:103
+msgid "Вы еще ничего не добавили в избранное"
+msgstr ""
+
+#: users/templates/users/my_favorites.html:104
+msgid "Начните читать"
+msgstr ""
+
+#: users/templates/users/my_news_list.html:55
 msgid "Предыдущая"
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:65
+#: users/templates/users/my_news_list.html:65
 msgid "Следующая"
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:95
+#: users/templates/users/my_news_list.html:95
 msgid "Вы еще не написали ни одной новости."
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:96
+#: users/templates/users/my_news_list.html:96
 msgid "Но можете сделать это сейчас нажав на кнопку ниже."
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:97
+#: users/templates/users/my_news_list.html:97
 msgid "Или вернуться на любую страницу по ссылкам в боковом меню."
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:101
+#: users/templates/users/my_news_list.html:101
 msgid "Хочу создать новость!"
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:105
+#: users/templates/users/my_news_list.html:105
 msgid "К сожалению вы пока что не можете создавать новости."
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:106
+#: users/templates/users/my_news_list.html:106
 msgid "Но это не сложно исправить!"
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:107
+#: users/templates/users/my_news_list.html:107
 msgid "Отправьте нам сообщение через форму обратной связи:"
 msgstr ""
 
-#: .\users\templates\users\my_news_list.html:111
+#: users/templates/users/my_news_list.html:111
 msgid "Отправить сообщение"
 msgstr ""
 
-#: .\users\templates\users\profile.html:8
+#: users/templates/users/profile.html:8
 msgid "профиль"
 msgstr ""
 
-#: .\users\templates\users\profile.html:14
+#: users/templates/users/profile.html:14
 msgid "Профиль пользователя"
 msgstr ""
 
-#: .\users\templates\users\profile.html:107
+#: users/templates/users/profile.html:107
 msgid "Редактировать"
 msgstr ""
 
-#: .\users\templates\users\profile.html:109
+#: users/templates/users/profile.html:109
 msgid "Удалить аккаунт"
 msgstr ""
 
-#: .\users\templates\users\registration.html:7
-#: .\users\templates\users\registration.html:13
+#: users/templates/users/registration.html:7
+#: users/templates/users/registration.html:13
 msgid "Регистрация пользователя"
 msgstr ""
 
-#: .\users\templates\users\registration.html:18
+#: users/templates/users/registration.html:18
 msgid "Тип аккаунта"
 msgstr ""
 
-#: .\users\templates\users\registration.html:25
+#: users/templates/users/registration.html:25
 msgid "Читатель"
 msgstr ""
 
-#: .\users\templates\users\user_panel.html:85
+#: users/templates/users/user_panel.html:85
 msgid "Мой профиль"
 msgstr ""
 
-#: .\users\templates\users\user_panel.html:90
+#: users/templates/users/user_panel.html:90
 msgid "Мои публикации"
 msgstr ""
 
-#: .\users\templates\users\user_panel.html:95
+#: users/templates/users/user_panel.html:95
 msgid "Избранное"
 msgstr ""
 
-#: .\users\templates\users\user_panel.html:100
+#: users/templates/users/user_panel.html:100
 msgid "Вернуться в главное меню"
 msgstr ""
 
-#: .\users\templates\users\user_panel.html:107
+#: users/templates/users/user_panel.html:107
 msgid "Панель администратора"
 msgstr ""
 
-#: .\users\templates\users\user_panel.html:115
+#: users/templates/users/user_panel.html:115
 msgid "Создать новость"
 msgstr ""
 
-#: .\users\validators.py:18
+#: users/validators.py:18
 msgid "%(email) has not allowed domain"
 msgstr ""

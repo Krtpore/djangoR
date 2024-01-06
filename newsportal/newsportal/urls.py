@@ -19,23 +19,24 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import i18n
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 import main.views as main_views
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('selectlanguage/', main_views.selectlanguage, name='selectlanguage'),
     path('i18n',include('django.conf.urls.i18n')),
+    path('',main_views.first_redirect, name='first_redirect'),
 ]
-    
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 urlpatterns += i18n.i18n_patterns(
     path('', include('main.urls')),
     path('news/', include('news.urls')),
     path('users/', include('users.urls')),
  ) # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'main.views.page404'
 
@@ -48,4 +49,4 @@ if settings.DEBUG:
 
 admin.site.site_header = "Панель администрирования новостного портала"
 admin.site.index_title = "Портал честных новостей"
-# admin.site.index_template = 'main/custom_admin/c_custom_admin.html' 
+# admin.site.index_template = 'main/custom_admin/c_custom_admin.html'

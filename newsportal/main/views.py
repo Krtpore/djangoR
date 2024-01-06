@@ -33,7 +33,7 @@ def news_example(request):
 
 def selectlanguage(request):
     #в 25 символов входит корневой катлого + код языка из двух букв + '/'
-    url = request.META.get('HTTP_REFERER')[25:]
+    url = request.META.get('HTTP_REFERER')[38:]
     # print('URL:',url)
     if request.method =='POST':
         current_language = translation.get_language()
@@ -46,13 +46,16 @@ def selectlanguage(request):
         # print('/'+lang+'/'+url)
         return HttpResponseRedirect('/'+lang+'/'+url)
 
+def first_redirect(request):
+    return redirect('main')
+
 import git
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 @csrf_exempt
 def update_server(request):
     header_signature = request.META.get('HTTP_X_HUB_SIGNATURE')
-    verify_signature(request.body,settings.GITHUB_WEBHOOK_KEY,header_signature)    
+    verify_signature(request.body,settings.GITHUB_WEBHOOK_KEY,header_signature)
     if request.method == "POST":
         local_dir = '/home/eh0388pe/djangoR'
         repo = git.Repo(local_dir)
@@ -60,7 +63,7 @@ def update_server(request):
         return HttpResponse('server updated')
     else:
         return HttpResponse("Вы попали не туда")
-    
+
 from django.http import HttpResponseServerError
 def verify_signature(payload_body, secret_token, signature_header):
     """Verify that the payload was sent from GitHub by validating SHA256.

@@ -21,10 +21,31 @@ def make_author(modeladmin,request,queryset):
         user.groups.add(group)
         user.groups.remove(ungroup)
 
-make_author.short_description = "РЈС‚РІРµСЂРґРёС‚СЊ Р°РІС‚РѕСЂР°"
+def make_reader_not_author(modeladmin,request,queryset):
+    group = Group.objects.get(name='Reader')
+    ungroup = Group.objects.get(name='Authors')
+    for user in queryset:
+        user.groups.add(group)
+        user.groups.remove(ungroup)
+
+def make_admin(modeladmin,request,queryset):
+    group = Group.objects.get(name='Admin')
+    for user in queryset:
+        user.groups.add(group)
+
+def unmake_admin(modeladmin,request,queryset):
+    ungroup = Group.objects.get(name='Admin')
+    for user in queryset:
+        user.groups.remove(ungroup)
+
+
+make_author.short_description = "Утвердить автора"
+make_reader_not_author.short_description = "Перевести из авторов в читатели"
+make_admin.short_description = "Перевести в администраторы"
+unmake_admin.short_description = "Снять статус администратора"
 
 class CustomUserAdmin(UserAdmin):
-    actions = [make_author]
+    actions = [make_author, make_reader_not_author, make_admin, unmake_admin]
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
@@ -40,7 +61,7 @@ class ContactFormAdmin(admin.ModelAdmin):
     list_display_links = ['name']
     readonly_fields = ['name', 'email']
 
-# РјРѕРµ
+# мое
 # @admin.register(Image)
 # class ImageAdmin(admin.ModelAdmin):
 #     list_display = ['title','article','image_tag']
@@ -54,7 +75,7 @@ class ContactFormAdmin(admin.ModelAdmin):
     # list_display = ['user','gender', 'email', 'birthdate', 'email', 'account_image', 'user_count']
     # list_filter = ['user','gender', 'email', 'birthdate', 'email', 'account_image']
 
-    # @admin.display(description='РќРѕРІРѕСЃС‚РµР№ Сѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ:', ordering='user_count')
+    # @admin.display(description='Новостей у пользователя:', ordering='user_count')
     # def user_count(self, object):
     #     return object.user_count
 

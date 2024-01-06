@@ -9,7 +9,7 @@
 {% load users_extras %}
 
 <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
-{% block title %} {% trans 'Р§С‚РµРЅРёРµ РЅРѕРІРѕСЃС‚Рё' %} {% endblock %}
+{% block title %} {% trans 'Чтение новости' %} {% endblock %}
 
 {% block body %}
 
@@ -43,28 +43,30 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">{% trans 'РќР°Р·Р°Рґ' %}</span>
+                            <span class="sr-only">{% trans 'Назад' %}</span>
                             </a>
                             <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">{% trans 'Р’РїРµСЂРµРґ' %}</span>
+                            <span class="sr-only">{% trans 'Вперед' %}</span>
                             </a>
                         </div>
                     {% endif %}
-                <p1> <i><strong>{% trans 'РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ' %}</strong></i> {{ article.date }} </p1> <br>
-                <p1> <i><strong>{% trans 'РР·РјРµРЅРµРЅРѕ' %}</strong></i> {{ article.date_change }} </p1> <br>
+                <p1> <i><strong>{% trans 'Опубликовано' %}</strong></i> {{ article.date }} </p1> <br>
+                <p1> <i><strong>{% trans 'Изменено' %}</strong></i> {{ article.date_change }} </p1> <br>
                 <p1 style="text-align: justify;"> <i><strong>{{ article.anouncement }} </strong></i> </p1> <br>
                 <p1 class="content_justify lh-sm" style="text-align: justify;"> {{ article.text }} </p1> <br>
             </div> <br>
-        <a class="btn btn-outline-success"  href="{% url 'favorites' article.pk %}"><img src="{% static 'main/img/icon-my-favorite.png' %}" alt="Р’ РёР·Р±СЂР°РЅРЅРѕРµ" class="navbaricons justify-content-md-end"> Р’ РёР·Р±СЂР°РЅРЅРѕРµ</a>
+        <a class="btn btn-outline-success"  href="{% url 'favorites' article.pk %}"><img src="{% static 'main/img/icon-my-favorite.png' %}" alt="В избранное" class="navbaricons justify-content-md-end"> В избранное</a>
         {% if request.user|has_group:"Admins" %}
-            <a class="btn btn-outline-danger" href="{% url 'news_delete' article.pk %}">{% trans 'РЈРґР°Р»РёС‚СЊ РЅРѕРІРѕСЃС‚СЊ' %}</a>
-            <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}">{% trans 'Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РЅРѕРІРѕСЃС‚СЊ' %}</a>
-        {% endif %} 
+            <a class="btn btn-outline-danger" href="{% url 'news_delete' article.pk %}">{% trans 'Удалить новость' %}</a>
+            <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}">{% trans 'Редактировать новость' %}</a>
+        {% endif %}
         {% if request.user|has_group:"Authors" %}
-            <a class="btn btn-outline-danger" href="{% url 'news_delete' article.pk %}">{% trans 'РЈРґР°Р»РёС‚СЊ РЅРѕРІРѕСЃС‚СЊ' %}</a>
-            <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}">{% trans 'Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РЅРѕРІРѕСЃС‚СЊ' %}</a>
-        {% endif %} 
+            {% if request.user == article.author %}
+                <a class="btn btn-outline-danger" href="{% url 'news_delete' article.pk %}">{% trans 'Удалить новость' %}</a>
+                <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}">{% trans 'Редактировать новость' %}</a>
+            {% endif %}
+        {% endif %}
         </div>
     </div>
 </div>
